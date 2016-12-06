@@ -11,9 +11,32 @@
     <title>LoginPage</title>
 </head>
 <body>
-    <div> 
-        Login Page
-        
+    <div class="LoginContainer"> 
+        <form action="LoginSubmit" method="post">
+            Login Page
+            <div>
+                <table>
+                    <tr>
+                        <td>Username:</td>
+                        <td><input name="Username" id="UsernameTextBox" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td>
+                        <td><input name="Password" id="PasswordTextBox" type="text" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <input id="Checkbox1" type="checkbox" value="rememberUser" /> Remember username
+            </div>
+            <div>
+                <input id="LoginBtn" type="submit" value="submit" />
+            </div>
+        </form>
+        <div>
+            <a href="../Login/ForgetUsername">Forget Username</a>
+            <a href="../Login/ForgetPassword">Forget Password</a>
+        </div>
     </div>
 </body>
 </html>

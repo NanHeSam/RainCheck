@@ -11,8 +11,31 @@
     <title>ForgetUsername</title>
 </head>
 <body>
-    <div> 
-        ForgetUsername
-    </div>
+    <form action="DisplayUsername" method="post">
+        <div class="ForgetUsernameContainer">
+            ForgetUsername
+            <div class="ForgetUsernameLabel">
+                Enter information to get Username
+            </div>
+            <div class="ForgetUsernameBox">
+                <table>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input name="Email" id="EmailTextBox" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td>Policy Number:</td>
+                        <td><input name="Policy" id="PolicyTextBox" type="text" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <input id="GetUsernameBtn" type="submit" value="Get Username" />
+            </div>
+            <div class="returnToLogin">
+                <a href="../Login/LoginPage">Return to login page</a>
+            </div>
+        </div>
+    </form>
 </body>
 </html>

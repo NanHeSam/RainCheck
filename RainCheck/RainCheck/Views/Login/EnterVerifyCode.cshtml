@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SendEmailResetPassword</title>
+</head>
+<body>
+    <div> 
+        sent verification code to your email<br/>
+        enter verification code to continue<br/>
+    </div>
+    <form action="verifyCode" method="post">
+        <div class="ResetPasswordContainer">
+            <div class="ResetPasswordBox">
+                <table>
+                    <tr>
+                        <td>Verification Code:</td>
+                        <td><input name="VerificationCode" id="VerificationCodeTextBox" type="text" /></td>
+                    </tr>
+                    
+                </table>
+            </div>
+            <div class="SubmitBox">
+                <input id="VerificationBtn" type="submit" value="Continue" />
+            </div>
+            <div class="returnToLogin">
+                <a href="../Login/LoginPage">Return to login page</a>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

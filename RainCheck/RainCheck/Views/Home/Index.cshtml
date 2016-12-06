@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <h1>Home Page here!</h1>
+    <div> 
+        <div id="header" style="text-align:right; padding:20px; background-color:antiquewhite;">
+            <a href="../Login/LoginPage">Log in</a>
+        </div>
+        <div id="imagePart" style="width:400px; height:300px; background-color:aquamarine; margin-left:100px;">
+
+        </div>
+        <div id="getQuote" style="width:400px; height:100px; background-color:antiquewhite; margin-left:100px;">
+            <form action="../Quote/GetQuote">
+                <input name="Zipcode" id="ZipcodeTextBox" type="text"  /><br/>
+                <input id="getQuoteBtn" type="submit" value="Get Quote" />
+            </form>
+        </div>
+        <div id="getSavedQuote" style="width:400px; height:100px; background-color:aquamarine; margin-left:100px;">
+            <form>
+                <p>
+                    Already has <b>quote saved</b>?<br/>
+                    Click to retrive saved quote:<br />
+                </p>
+                <a href="" style="font-style:normal">Saved Quote</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

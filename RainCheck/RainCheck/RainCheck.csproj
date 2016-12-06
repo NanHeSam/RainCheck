@@ -123,6 +123,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -137,9 +138,13 @@
     </Content>
     <Content Include="Views\Login\LoginPage.cshtml" />
     <Content Include="Views\Login\ForgetUsername.cshtml" />
-    <Content Include="Views\Login\SendEmailResetPassword.cshtml" />
+    <Content Include="Views\Login\EnterVerifyCode.cshtml" />
     <Content Include="Views\Login\ForgetPassword.cshtml" />
     <Content Include="Views\Login\ResetPassword.cshtml" />
+    <Content Include="Views\Login\DisplayUsername.cshtml" />
+    <Content Include="Views\Login\ResetPasswordResult.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\getSavedQuote.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
