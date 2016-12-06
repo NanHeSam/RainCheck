@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RainCheckServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="car">
+    <Key>
+      <PropertyRef Name="car_id" />
+    </Key>
+    <Property Name="car_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vin_number" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="car_model" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="body_style" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="primary_use" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="estimate_annual_mileage" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="ownership" Type="bit" Nullable="false" />
+    <Property Name="car_year" Type="numeric" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="car_make" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="state_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="city_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="coverage_level">
+    <Key>
+      <PropertyRef Name="level_id" />
+    </Key>
+    <Property Name="level_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="limite" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="credentials">
+    <Key>
+      <PropertyRef Name="credential_id" />
+    </Key>
+    <Property Name="credential_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="rank_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer_tbl">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="driver_license_number" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="join_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="login_id" />
+    </Key>
+    <Property Name="login_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="policy_tbl">
+    <Key>
+      <PropertyRef Name="policy_id" />
+    </Key>
+    <Property Name="policy_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="policy_number" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="car_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="start_date" Type="datetime" Nullable="false" />
+    <Property Name="end_date" Type="datetime" Nullable="false" />
+    <Property Name="policy_amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="self_property" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="self_body" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="opposite_property" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="opposite_body" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="quote">
+    <Key>
+      <PropertyRef Name="quote_id" />
+    </Key>
+    <Property Name="quote_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="userid" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="quote_date" Type="datetime" Nullable="false" />
+    <Property Name="quote_amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Reference_number" Type="nvarchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="State_id" />
+    </Key>
+    <Property Name="State_id" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="State_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="user_tbl">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="numeric" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_F_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_M_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_L_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_phone" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_SSN" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_DOB" Type="datetime" Nullable="false" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_address" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="state_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="city_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="zip_code" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="marital_status" Type="bit" Nullable="false" />
+    <Property Name="gender" Type="bit" Nullable="false" />
+    <Property Name="education_level" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="employment" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="accidents_5years" Type="bit" Nullable="false" />
+    <Property Name="traffic_tickets_5years" Type="bit" Nullable="false" />
+    <Property Name="DUIs_10years" Type="bit" Nullable="false" />
+    <Property Name="suspensions_5years" Type="bit" Nullable="false" />
+    <Property Name="defensive_Drive_2years" Type="bit" Nullable="false" />
+    <Property Name="military_affiliation" Type="bit" Nullable="false" />
+    <Property Name="veteran_status" Type="bit" Nullable="false" />
+    <Property Name="credential_id" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_customer_user">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="customer_tbl" Type="Self.customer_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="customer_tbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_login_customer">
+    <End Role="customer_tbl" Type="Self.customer_tbl" Multiplicity="1" />
+    <End Role="login" Type="Self.login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer_tbl">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="login">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ob_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="opposite_body" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_op_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="opposite_property" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_policy_car">
+    <End Role="car" Type="Self.car" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="car">
+        <PropertyRef Name="car_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sb_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="self_body" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sp_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="self_property" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_state_id">
+    <End Role="state" Type="Self.state" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="State_id" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_city">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_credential">
+    <End Role="credentials" Type="Self.credentials" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="credentials">
+        <PropertyRef Name="credential_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="credential_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_id">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_state">
+    <End Role="state" Type="Self.state" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="State_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_userid">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="quote" Type="Self.quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="quote">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="RainCheckServerModelStoreContainer">
+    <EntitySet Name="car" EntityType="Self.car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="city" EntityType="Self.city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="coverage_level" EntityType="Self.coverage_level" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="credentials" EntityType="Self.credentials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer_tbl" EntityType="Self.customer_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="login" EntityType="Self.login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="policy_tbl" EntityType="Self.policy_tbl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="quote" EntityType="Self.quote" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="state" EntityType="Self.state" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_tbl" EntityType="Self.user_tbl" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_customer_user" Association="Self.fk_customer_user">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="customer_tbl" EntitySet="customer_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_login_customer" Association="Self.fk_login_customer">
+      <End Role="customer_tbl" EntitySet="customer_tbl" />
+      <End Role="login" EntitySet="login" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ob_coverage" Association="Self.fk_ob_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_op_coverage" Association="Self.fk_op_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_policy_car" Association="Self.fk_policy_car">
+      <End Role="car" EntitySet="car" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sb_coverage" Association="Self.fk_sb_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sp_coverage" Association="Self.fk_sp_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_state_id" Association="Self.fk_state_id">
+      <End Role="state" EntitySet="state" />
+      <End Role="city" EntitySet="city" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_city" Association="Self.fk_user_city">
+      <End Role="city" EntitySet="city" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_credential" Association="Self.fk_user_credential">
+      <End Role="credentials" EntitySet="credentials" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_id" Association="Self.fk_user_id">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_state" Association="Self.fk_user_state">
+      <End Role="state" EntitySet="state" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_userid" Association="Self.fk_userid">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="quote" EntitySet="quote" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
