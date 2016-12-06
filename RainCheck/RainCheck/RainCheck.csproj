@@ -84,6 +84,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\login.cs">
       <DependentUpon>RainCheckEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\policyVM.cs" />
     <Compile Include="Models\policy_tbl.cs">
       <DependentUpon>RainCheckEntity.tt</DependentUpon>
     </Compile>
@@ -254,6 +256,7 @@
     <Folder Include="Views\home\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
