@@ -11,7 +11,9 @@ namespace RainCheck.Controllers
         // GET: UserAccount
         public ActionResult UserMain()
         {
-            return View("usermain");
+            Models.RainCheckConnectionString obj = new Models.RainCheckConnectionString();
+            return View();
+
         }
     }
 }

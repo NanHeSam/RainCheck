@@ -3,6 +3,14 @@
     padding-bottom: 20px;
 }
 
+/* added for logo */
+#logo {
+  text-align: center;
+}
+#logo img {
+  width: 10%;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
