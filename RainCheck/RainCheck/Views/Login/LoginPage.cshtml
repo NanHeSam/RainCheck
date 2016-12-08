@@ -1,4 +1,5 @@
-﻿
+﻿@model RainCheck.Models.login
+
 @{
     Layout = null;
 }
@@ -10,29 +11,51 @@
     <meta name="viewport" content="width=device-width" />
     <title>LoginPage</title>
 </head>
+<script src="~/Script/jquery-1.10.2.js"></script>
+<script src="~/Script/jquery.validate.js"></script>
+<script src="~/Script/jquery.validate.unobtrusive.js"></script>
+
 <body>
     <div class="LoginContainer"> 
-        <form action="LoginSubmit" method="post">
-            Login Page
+        <!--<form action="LoginSubmit" method="post">-->
+        @using (Html.BeginForm("LoginSubmit", "Login", FormMethod.Post))
+        { 
+            <p><b>Login Page</b></p>
             <div>
+                <span style="color:red;">@TempData["errorMessage"]<br /></span>
                 <table>
                     <tr>
                         <td>Username:</td>
-                        <td><input name="Username" id="UsernameTextBox" type="text" /></td>
+                        <td>@Html.TextBoxFor(m => m.user_name)<!--input name="Username" id="UsernameTextBox" type="text" /-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(x => x.user_name)
+                        </td>
                     </tr>
                     <tr>
                         <td>Password:</td>
-                        <td><input name="Password" id="PasswordTextBox" type="text" /></td>
+                        <td>@Html.TextBoxFor(m => m.password)<!--input name="Password" id="PasswordTextBox" type="text" /--></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            @Html.ValidationMessageFor(x => x.password)
+                        </td>
                     </tr>
                 </table>
+                <label name="ErrorMessage"></label> 
             </div>
             <div>
-                <input id="Checkbox1" type="checkbox" value="rememberUser" /> Remember username
+                <input name="RememberCheckbox" id="RememberCheckbox" type="checkbox" value="rememberUser" /> Remember username
             </div>
             <div>
                 <input id="LoginBtn" type="submit" value="submit" />
             </div>
-        </form>
+        }
+        <!--</form>-->
         <div>
             <a href="../Login/ForgetUsername">Forget Username</a>
             <a href="../Login/ForgetPassword">Forget Password</a>

@@ -44,3 +44,7 @@ C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Mvc.xml
 C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.csprojResolveAssemblyReference.cache
 C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.dll
 C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.pdb
+C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.dll
+C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.dll
+C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.xml
+C:\Users\Grace\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.xml

@@ -18,6 +18,8 @@
     <form action="verifyCode" method="post">
         <div class="ResetPasswordContainer">
             <div class="ResetPasswordBox">
+                <span>vCode: @Session["verificationCode"]</span> <br/>
+                <span style="color:red;">@TempData["Message"]</span>
                 <table>
                     <tr>
                         <td>Verification Code:</td>
