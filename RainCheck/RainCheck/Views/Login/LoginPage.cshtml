@@ -32,7 +32,7 @@
                     <tr>
                         <td></td>
                         <td>
-                            @Html.ValidationMessageFor(x => x.user_name)
+                            @Html.ValidationMessageFor(x => x.user_name, null, new { @style = "color:red;" })
                         </td>
                     </tr>
                     <tr>
@@ -42,11 +42,10 @@
                     <tr>
                         <td></td>
                         <td>
-                            @Html.ValidationMessageFor(x => x.password)
+                            @Html.ValidationMessageFor(x => x.password, null, new { @style = "color:red;" })
                         </td>
                     </tr>
                 </table>
-                <label name="ErrorMessage"></label> 
             </div>
             <div>
                 <input name="RememberCheckbox" id="RememberCheckbox" type="checkbox" value="rememberUser" /> Remember username

@@ -9,11 +9,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>SendEmailResetPassword</title>
+    <script src="~/Script/jquery-1.10.2.min.js"></script>
+    <script src="~/Script/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
 </head>
+
 <body>
     <div> 
-        sent verification code to your email<br/>
-        enter verification code to continue<br/>
+        Sent verification code to your email.<br/>
+        Enter verification code to continue.<br/>
+        <b>Note</b>: space not allowed.<br/>
     </div>
     <form action="verifyCode" method="post">
         <div class="ResetPasswordContainer">
@@ -23,7 +30,7 @@
                 <table>
                     <tr>
                         <td>Verification Code:</td>
-                        <td><input name="VerificationCode" id="VerificationCodeTextBox" type="text" /></td>
+                        <td><input name="VerificationCode" id="VerificationCodeTextBox" type="text" placeholder="Verification Code"/></td>
                     </tr>
                     
                 </table>

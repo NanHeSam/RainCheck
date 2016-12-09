@@ -1,4 +1,5 @@
-﻿
+﻿@model RainCheck.Models.forgetUsernameVM
+
 @{
     Layout = null;
 }
@@ -10,33 +11,51 @@
     <meta name="viewport" content="width=device-width" />
     <title>ForgetUsername</title>
 </head>
+
+<script src="~/Script/jquery-1.10.2.js"></script>
+<script src="~/Script/jquery.validate.js"></script>
+<script src="~/Script/jquery.validate.unobtrusive.js"></script>
+
 <body>
-    <form action="DisplayUsername" method="post">
         <div class="ForgetUsernameContainer">
             ForgetUsername
-            <div class="ForgetUsernameLabel">
-                Enter information to get Username
-            </div>
-            <div class="ForgetUsernameBox">
-                <span style="color:red;">@TempData["errorMessage"]</span>
-                <table>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input name="Email" id="EmailTextBox" type="text" /></td>
-                    </tr>
-                    <tr>
-                        <td>Policy Number:</td>
-                        <td><input name="Policy" id="PolicyTextBox" type="text" /></td>
-                    </tr>
-                </table>
-            </div>
-            <div>
-                <input id="GetUsernameBtn" type="submit" value="Get Username" />
-            </div>
+            @using (Html.BeginForm("DisplayUsername", "Login", FormMethod.Post))
+            {
+                <div class="ForgetUsernameLabel">
+                    Enter information to get Username
+                </div>
+                <div class="ForgetUsernameBox">
+                    <span style="color:red;">@TempData["errorMessage"]</span>
+                    <table>
+                        <tr>
+                            <td>Email:</td>
+                            <td>@Html.TextBoxFor(x => x.email)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                @Html.ValidationMessageFor(x => x.email, null, new { @style = "color:red;" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Policy Number:</td>
+                            <td>@Html.TextBoxFor(x => x.policy_Num)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                @Html.ValidationMessageFor(x => x.policy_Num, null, new { @style = "color:red;" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <input id="GetUsernameBtn" type="submit" value="Get Username" />
+                </div>
+            }
             <div class="returnToLogin">
                 <a href="../Login/LoginPage">Return to login page</a>
             </div>
         </div>
-    </form>
 </body>
 </html>

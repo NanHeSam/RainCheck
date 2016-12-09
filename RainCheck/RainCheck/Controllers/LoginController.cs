@@ -23,20 +23,21 @@ namespace RainCheck.Controllers
         {           
 
             var username = lgn.user_name;
-            //var password = Request.Form["Password"];
-            List<login> targets = entity.logins.Where(x => x.user_name.Equals(username)).ToList();
-            if (targets.Count() == 0)
+
+            List<login> targets = entity.logins.Where(x => x.user_name.Equals(username)).ToList(); // find record with certain username
+
+            if (targets.Count() == 0) // wrong username
             {
                 TempData["errorMessage"] = "No such user!";
-                return View("LoginPage", lgn);
+                return RedirectToAction("LoginPage");
             }
-            else if(!lgn.password.Equals(targets[0].password))
+            else if(!lgn.password.Equals(targets[0].password)) // wrong password
             {
                 TempData["errorMessage"] = "Wrong password and username combination";
-                return View("LoginPage", lgn);
+                return RedirectToAction("LoginPage");
             }
             Session["logined_username"] = targets[0].user_name; // store logined username
-            return View("UserAcount");
+            return View("UserAcount"); // this part is for test. Need to redirect to ../UserAcc/display something
         }
 
         public ActionResult ForgetUsername()
@@ -45,10 +46,10 @@ namespace RainCheck.Controllers
             return View();
         }
 
-        public ActionResult DisplayUsername()
+        public ActionResult DisplayUsername(forgetUsernameVM vm)
         {
-            string email = Request.Form["Email"];
-            decimal policyNum = Convert.ToDecimal( Request.Form["Policy"]);
+            string email = vm.email; // Request.Form["Email"];
+            decimal policyNum = vm.policy_Num; // Convert.ToDecimal( Request.Form["Policy"]);
             var usernames = from c in entity.customer_tbl
                             join u in entity.user_tbl on c.userid equals u.userid
                             join l in entity.logins on c.customer_id equals l.customer_id
@@ -59,7 +60,7 @@ namespace RainCheck.Controllers
             if (usernames.Count() == 0)
             {
                 TempData["errorMessage"] = "No such user Or \n wrong combination of email and policy number";
-                return View("ForgetUsername");
+                return RedirectToAction("ForgetUsername");
             }
 
             // if inputed information is incorrect
@@ -73,32 +74,33 @@ namespace RainCheck.Controllers
         {
             return View();
         }
-        public async System.Threading.Tasks.Task<ActionResult> SendEmailResetPassword()
+
+        public async System.Threading.Tasks.Task<ActionResult> SendEmailResetPassword(fogetPasswordVM vm)
         {
-            string username = Request.Form["Username"];
-            decimal policyNum = Convert.ToDecimal(Request.Form["Policy"]);
+            string username = vm.username;// Request.Form["username"]; // 
+            decimal policyNum = vm.policy_Num;// Convert.ToDecimal(Request.Form["policy_Num"]);
 
             
 
-            var vm = from l in entity.logins
+            var targets = from l in entity.logins
                      join c in entity.customer_tbl on l.customer_id equals c.customer_id
                      join u in entity.user_tbl on c.userid equals u.userid
                      join p in entity.policy_tbl on u.userid equals p.user_id
                      where l.user_name == username && p.policy_number == policyNum
                      select new { u.user_email, l.user_name };
 
-            if (vm.Count() == 0)
+            if (targets.Count() == 0)
             {// if inputed information is incorrect
 
                 TempData["errorMessage"] = "No such user or \n wrong combination of username and policy number";
-                return View("ForgetPassword");
+                return RedirectToAction("ForgetPassword");
             }
             else
             {// else
              // email verification code to user email address and then
              // display reset password form, with verification code.
 
-                string email = vm.ToList()[0].user_email;
+                string email = targets.ToList()[0].user_email;
                 Random rnd = new Random();
                 int vCode = rnd.Next(1001, 10000);
 
@@ -134,6 +136,7 @@ namespace RainCheck.Controllers
 
 
         }
+
         public ActionResult verifyCode() {
             if (!Request.Form["VerificationCode"].Equals(Session["verificationCode"].ToString()))
             {
@@ -144,6 +147,7 @@ namespace RainCheck.Controllers
             else
                 return View("ResetPassword");
         }
+
         public ActionResult ResetPassword()
         {
             if (Session["resetPswd_username"] == null)
@@ -160,12 +164,12 @@ namespace RainCheck.Controllers
             if (password == "" || confirmPassword == "")
             {
                 TempData["Message"] = "New password and confirm password cannot be empty!";
-                return View("ResetPassword"); 
+                return View(); 
             }
             if (!password.Equals(confirmPassword))
             {
                 TempData["Message"] = "New password and confirm password not match!";
-                return View("ResetPassword");
+                return View();
             }
             // reset password
             login target = entity.logins.Where(x => x.user_name == username).ToList()[0];

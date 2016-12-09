@@ -1,4 +1,5 @@
-﻿
+﻿@model RainCheck.Models.quote
+
 @{
     Layout = null;
 }
@@ -11,8 +12,14 @@
     <title>getSavedQuote</title>
 </head>
 <body>
-    <div> 
-        Get Saved Quote
-    </div>
+    @using (Html.BeginForm("getSavedQuote", "Home", FormMethod.Post))
+    { 
+        <div>
+            <span style="color:red">@TempData["Message"]</span>
+            Get Saved Quote <br/>
+            Reference Number : @Html.TextBoxFor(x => x.Reference_number) <br/>
+            <input id="Submitbtn" type="submit" value="Get Saved Quote" />
+        </div>
+    }
 </body>
 </html>
