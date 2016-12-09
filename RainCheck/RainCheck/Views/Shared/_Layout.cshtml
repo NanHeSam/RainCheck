@@ -9,30 +9,29 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    <div id="logo">
-        <a href="@Url.Action("Index", "Home")">
-            <img src="~/asset/RainCheckLogo.PNG" />
-        </a>
-    </div>
-    <span class="glyphicon glyphicon-log-out"></span> Log out
 
+    <nav class="navbar navbar-default ">
 
+        <div class="nav navbar-nav navbar-right">
+            <a href="@Url.Action("Index", "Home")">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </a>
+        </div>
+    </nav>
 
-
-
-
-    <div class="container body-content">
-        
+    <div class="container">
+        <div class="row">
+            <a class="col-md-2 col-md-offset-5" href="@Url.Action("Index", "Home")">
+                <img class="center" src="~/asset/RainCheckLogo.PNG" />
+            </a>
+        </div>
         <div>
             @RenderBody()
         </div>
-
     </div>
     <hr />
     <footer class="footer">
-        <div class="container">
-            <p style="text-align:center">&copy; @DateTime.Now.Year - All Right Reserve Rain Check Corp</p>
-        </div>
+        <p style="text-align:center">&copy; @DateTime.Now.Year - All Right Reserve Rain Check Corp</p>
     </footer>
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>

@@ -1,14 +1,17 @@
-﻿@model RainCheck.Models.policyVM
+﻿@model IEnumerable<RainCheck.Models.policy_tbl>
 
+
+<h3>Welcome @Session["userid"]</h3>
+
+@*display current policy*@ 
 <div id="BillsAndOffers" class="tabcontent">
-    <h3>Welcome @Model.userName</h3>
-    @foreach (var o in Model.policies)
+    
+    @foreach (var policy in Model)
     {
-        <h2>@o.policy_id</h2>
-        <div>
-            <p>total price -: @o.policy_amount</p>
-            <p>amount due -: @o.policy_amount</p>
-            <p>due date -: @o.end_date</p>
-        </div>
+        <h2>@policy.policy_id</h2>
+
+            <p>total price -: @policy.policy_amount </p>
+            <p>amount due -: @(policy.policy_amount/12)</p>
+            <p>due date -: @policy.end_date</p>
     }
 </div>
