@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <style>
+        form div + div {
+            margin-top: 1em;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+        }
+
+        input, textarea {
+            font: 1em sans-serif;
+            /* To give the same size to all text field */
+            width: 300px;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            /* To harmonize the look & feel of text field border */
+            border: 1px solid #999;
+        }
+
+        .button {
+            /* To position the buttons to the same position of the text fields */
+            padding-left: 90px; /* same size as the label elements */
+        }
+
+        button {
+            margin-left: 75px;
+        }
+    </style>
+    <title>Start a Policy</title>
+</head>
+<body>
+    <script type="text/javascript">
+
+    </script>
+    <div style="border:10px red solid">
+        Start New Purchase
+    </div>
+    <div id="id1" class="cl" style="border:10px yellow solid">
+        <form id="f1" action="Submit" method="post">
+            <div class="cl">
+                <label for="male">Enter Reference# :</label> <input style="margin-left:10px" id="Text1" name="reference" type="text" /> <br />
+            </div>  
+            <div class="cl">
+                <label for="male">Driver's Licence:</label> <input style="margin-left:10px" name="licence" id="Text1" type="text" /> <br />
+            </div> 
+            <div class="cl">
+                <label for="male">VIN Number:</label> <input style="margin-left:10px" name="VIN" id="Text1" type="text" /> <br />
+            </div> 
+            <div class="cl">
+                <label for="male">Start Data:</label> <input style="margin-left:10px" name="start" id="Text1" type="text" /> <br />
+            </div>
+            <div class="cl">
+                <label for="male">End Date :</label> <input style="margin-left:10px" id="Text1" name="end" type="text" /><br />
+            </div>
+            <div class="cl">
+                <label for="male">Self Property:</label>
+                <select style="margin-left:10px" name="SelfProperty">
+                    <option value="0" name="0">0</option>
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select><br />
+                <label for="male">Self Body:</label>
+                <select style="margin-left:10px" name="SelfBody">
+                    <option value="0" name="0">0</option>
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select><br />
+                <label for="male">Opposite Property:</label>
+                <select style="margin-left:10px" name="OppositeProperty">
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select><br />
+                <label for="male">Opposite Body:</label>
+                <select style="margin-left:10px" name="OppositeBody">
+                    <option value="10000" name="0">10000</option>
+                    <option value="25000" name="0">25000</option>
+                    <option value="50000" name="0">50000</option>
+                    <option value="100000" name="0">100000</option>
+                </select>
+            </div>  
+            <div class="cl">
+                <label for="male">Create Your Account :</label> 
+            </div>                           
+            <div class="cl">
+                <label for="male">Username :</label> <input style="margin-left:10px" id="Text1" name="username" type="text" /><br />
+            </div>
+            <div class="cl">
+                <label for="male">Password :</label> <input style="margin-left:10px" id="Text1" name="password" type="text" /><br />
+            </div>
+            <div id="id2" class="cl">
+                <label for="male">Confirm Password:</label> <input style="margin-left:10px" id="Text1" name="confirm" type="text" />
+            </div>    
+            <div class="button">
+                <button id="Submit1" type="submit" value="Submit"> Submit </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

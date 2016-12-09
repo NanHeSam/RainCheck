@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>   
+     <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <style>
+       form div + div {margin-top: 1em;}
+       label {    
+                 display: inline-block;
+                 width: 150px;
+                 text-align: right;
+            }
+
+       input, textarea {
+    
+             font: 1em sans-serif;
+
+                /* To give the same size to all text field */
+                width: 300px;
+               -moz-box-sizing: border-box;
+                box-sizing: border-box;
+
+               /* To harmonize the look & feel of text field border */
+                border: 1px solid #999;
+                }
+       .button {
+                    /* To position the buttons to the same position of the text fields */
+                    padding-left: 90px; /* same size as the label elements */
+                }
+         button{ margin-left: 75px;}
+    </style>
+    <title>Create Account</title>
+</head>
+<body>
+    <script type="text/javascript">              
+
+    </script>
+<div style="border:10px red solid">
+       Creating Account
+</div>
+<div id="id1" class="cl" style="border:10px yellow solid" >    
+    <form id="f1" action="Submit" method="post">        
+           <div class="cl">
+                <label for="male">Username :</label> <input style="margin-left:10px" id="Text1" value="@ViewBag.teps" name="StateID" type="text" /><br />
+           </div>       
+            <div class="cl">
+                <label for="male">Password :</label> <input style="margin-left:10px" id="Text1" name="StateID" type="text" /><br />
+           </div>
+           <div id="id2" class="cl">
+                <label for="male">Confirm Password:</label> <input style="margin-left:10px" id="Text1" name="StateName" type="text" />
+           </div>        
+               
+           <div class="button">
+                <button id="Submit1" type="submit" value="Submit" > Submit </button>
+           </div>
+      </form>
+</div>
+</body>
+
+</html>
