@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<RainCheck.Models.policy_tbl>
 
 
-<h3>Welcome @Session["userid"]</h3>
+<h3>Welcome @Session["logged_username"]</h3>
 
 @*display current policy*@ 
 <div id="BillsAndOffers" class="tabcontent">
@@ -9,7 +9,6 @@
     @foreach (var policy in Model)
     {
         <h2>@policy.policy_id</h2>
-
             <p>total price -: @policy.policy_amount </p>
             <p>amount due -: @(policy.policy_amount/12)</p>
             <p>due date -: @policy.end_date</p>
