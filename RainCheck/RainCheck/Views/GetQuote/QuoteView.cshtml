@@ -9,10 +9,52 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>QuoteView</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
 </head>
 <body>
-    <div> 
-        Quote: @Model.CalculateQuote() <br />
-    </div>
+   
+        <!-- Quote: <br /> -->
+        <div class="wrapper">
+
+            <div style="text-align: center; display: flex;">
+                <img src="~/img/RainCheckLogo.PNG" />
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/img/Basic_Policy.jpg" alt="Basic Policy">
+                        <div class="caption">
+                            <h3>Basic Policy </h3>
+                            <p> @Model.CalculateQuote() </p>
+                            <p><a href="#" class="btn btn-primary" style="background-color:#B03A2E;" role="button">Save Quote</a> <a href="#" class="btn btn-default" role="button">Purchase</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/img/Premium_Policy.jpg" alt="Premium Policy">
+                        <div class="caption">
+                            <h3>Premium Policy</h3>
+                            <p> @Model.CalculateQuote()</p>
+                            <p ><a href="#" style="margin-top:35px; background-color:#B03A2E;" class="btn btn-primary" role="button">Save Quote</a> <a href="#" style="margin-top:35px;" class="btn btn-default" role="button">Purchase</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="~/img/Super_Policy.jpg" alt="Super Policy">
+                        <div class="caption"  >
+                            <h3>Super Policy</h3>
+                            <p>...</p>
+                            <p><a href="#" style="margin-top:10px; background-color:#B03A2E;" class="btn btn-primary"  role="button">Save Quote</a> <a href="#" style="margin-top:10px;" class="btn btn-default" role="button">Purchase</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>

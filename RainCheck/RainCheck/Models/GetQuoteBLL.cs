@@ -39,7 +39,7 @@ namespace RainCheck.Models
         public string Usage { get; set; }
         public int Milage { get; set; }
 
-        public int CalculateQuote()
+        public string CalculateQuote()
         {
             Random quote = new Random();
             int quote_num = 10000;
@@ -133,7 +133,12 @@ namespace RainCheck.Models
             {
                 quote_num = quote_num - quote.Next(2222, 3333);
             }
-            return quote_num;
+            string finalQuote=  quote_num.ToString();
+            string amount = finalQuote.Substring(0, 3);
+            string dot = ".";
+            string change = finalQuote.Substring(3, 2);
+
+            return amount+dot+change;
         }
     }
 }
