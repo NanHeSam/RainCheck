@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RainCheckServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="RCSgetmodel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="carmake" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="statename" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_GetState" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_InsertUserInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user_F_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_M_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_L_name" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_phone" Type="numeric" Mode="In" />
+          <Parameter Name="user_SSN" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_DOB" Type="datetime" Mode="In" />
+          <Parameter Name="user_email" Type="nvarchar" Mode="In" />
+          <Parameter Name="user_address" Type="nvarchar" Mode="In" />
+          <Parameter Name="city" Type="nvarchar" Mode="In" />
+          <Parameter Name="state" Type="nvarchar" Mode="In" />
+          <Parameter Name="zip_code" Type="numeric" Mode="In" />
+          <Parameter Name="Marital_Status" Type="bit" Mode="In" />
+          <Parameter Name="Gender" Type="bit" Mode="In" />
+          <Parameter Name="Education_Level" Type="nvarchar" Mode="In" />
+          <Parameter Name="Employment" Type="nvarchar" Mode="In" />
+          <Parameter Name="Accident_Records_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Traffic_Tickets_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="DUIs_10_YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Suspensions_5YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Defensive_Drive_2YEARS" Type="bit" Mode="In" />
+          <Parameter Name="Military_Affiliation" Type="bit" Mode="In" />
+          <Parameter Name="Veteran_Status" Type="bit" Mode="In" />
+          <Parameter Name="Rank_ID" Type="numeric" Mode="In" />
+        </Function>
+        <EntityContainer Name="RainCheckServerModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RainCheckServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RainCheckServerEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="RCSgetmodel" ReturnType="Collection(String)">
+          <Parameter Name="carmake" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetCity" ReturnType="Collection(String)">
+          <Parameter Name="statename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GetState" ReturnType="Collection(String)" />
+          <FunctionImport Name="SP_InsertUserInfo">
+            <Parameter Name="user_F_name" Mode="In" Type="String" />
+            <Parameter Name="user_M_name" Mode="In" Type="String" />
+            <Parameter Name="user_L_name" Mode="In" Type="String" />
+            <Parameter Name="user_phone" Mode="In" Type="Decimal" />
+            <Parameter Name="user_SSN" Mode="In" Type="String" />
+            <Parameter Name="user_DOB" Mode="In" Type="DateTime" />
+            <Parameter Name="user_email" Mode="In" Type="String" />
+            <Parameter Name="user_address" Mode="In" Type="String" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="state" Mode="In" Type="String" />
+            <Parameter Name="zip_code" Mode="In" Type="Decimal" />
+            <Parameter Name="Marital_Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Gender" Mode="In" Type="Boolean" />
+            <Parameter Name="Education_Level" Mode="In" Type="String" />
+            <Parameter Name="Employment" Mode="In" Type="String" />
+            <Parameter Name="Accident_Records_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Traffic_Tickets_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="DUIs_10_YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Suspensions_5YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Defensive_Drive_2YEARS" Mode="In" Type="Boolean" />
+            <Parameter Name="Military_Affiliation" Mode="In" Type="Boolean" />
+            <Parameter Name="Veteran_Status" Mode="In" Type="Boolean" />
+            <Parameter Name="Rank_ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RainCheckServerModelStoreContainer" CdmEntityContainer="RainCheckServerEntities1" >
+          <FunctionImportMapping FunctionImportName="RCSgetmodel" FunctionName="RainCheckServerModel.Store.RCSgetmodel" />
+          <FunctionImportMapping FunctionImportName="SP_GetCity" FunctionName="RainCheckServerModel.Store.SP_GetCity" />
+          <FunctionImportMapping FunctionImportName="SP_GetState" FunctionName="RainCheckServerModel.Store.SP_GetState" />
+          <FunctionImportMapping FunctionImportName="SP_InsertUserInfo" FunctionName="RainCheckServerModel.Store.SP_InsertUserInfo" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

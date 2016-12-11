@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+
 
 namespace RainCheck.Models
 {
@@ -12,15 +15,15 @@ namespace RainCheck.Models
         public string LastName { get; set; }
         public string Address { get; set; }
         public long PhoneNum { get; set; }
-        public int SSN { get; set; }
-        public string DOB { get; set; }
+        public string SSN { get; set; }
+        public DateTime DOB { get; set; }
         public string Email { get; set; }
         public string State { get; set; }
         public string City { get; set; }
         public int Zip { get; set; }
         public bool Marital { get; set; } // true means married & false means single
         public string Gender { get; set; }// 
-        private bool GenderDB { get; set; }// true means male & false means female
+        public bool GenderDB { get; set; }// true means male & false means female
         public string Education { get; set; }
         public string Employment { get; set; }
         private int Credential { get; set; }
@@ -39,10 +42,22 @@ namespace RainCheck.Models
         public string Usage { get; set; }
         public int Milage { get; set; }
 
-        public string CalculateQuote()
+        public decimal basicQuote { get; set; }
+        public decimal premiumQuote { get; set; }
+        public decimal superQuote { get; set; }
+
+
+     /*   RainCheckServerEntities1 RainObject = new RainCheckServerEntities1();
+        public void insertUser()
+        {
+            RainObject.user_tbl.Add(); //
+        }
+        */
+
+        public decimal CalculateQuote()
         {
             Random quote = new Random();
-            int quote_num = 10000;
+            decimal quote_num = 10000;
             //1)what is the vehicle used for?
             string usage = this.Usage;
             if (usage == "Commute")
@@ -133,12 +148,9 @@ namespace RainCheck.Models
             {
                 quote_num = quote_num - quote.Next(2222, 3333);
             }
-            string finalQuote=  quote_num.ToString();
-            string amount = finalQuote.Substring(0, 3);
-            string dot = ".";
-            string change = finalQuote.Substring(3, 2);
-
-            return amount+dot+change;
+            
+            return (quote_num/100);
         }
+        
     }
 }

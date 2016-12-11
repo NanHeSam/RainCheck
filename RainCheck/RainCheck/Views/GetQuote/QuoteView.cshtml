@@ -6,14 +6,16 @@
 <!DOCTYPE html>
 
 <html>
-<head>
+<head> <!-- When the section head is initiated delete the <head> tags-->
+  @* @section head{*@ 
+    
     <meta name="viewport" content="width=device-width" />
     <title>QuoteView</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.1.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
-
+    }-->
 </head>
 <body>
    
@@ -29,7 +31,7 @@
                         <img src="~/img/Basic_Policy.jpg" alt="Basic Policy">
                         <div class="caption">
                             <h3>Basic Policy </h3>
-                            <p> @Model.CalculateQuote() </p>
+                            <p>$ @Model.basicQuote </p>
                             <p><a href="#" class="btn btn-primary" style="background-color:#B03A2E;" role="button">Save Quote</a> <a href="#" class="btn btn-default" role="button">Purchase</a></p>
                         </div>
                     </div>
@@ -39,7 +41,7 @@
                         <img src="~/img/Premium_Policy.jpg" alt="Premium Policy">
                         <div class="caption">
                             <h3>Premium Policy</h3>
-                            <p> @Model.CalculateQuote()</p>
+                            <p>$ @Model.premiumQuote</p>
                             <p ><a href="#" style="margin-top:35px; background-color:#B03A2E;" class="btn btn-primary" role="button">Save Quote</a> <a href="#" style="margin-top:35px;" class="btn btn-default" role="button">Purchase</a></p>
                         </div>
                     </div>
@@ -49,7 +51,7 @@
                         <img src="~/img/Super_Policy.jpg" alt="Super Policy">
                         <div class="caption"  >
                             <h3>Super Policy</h3>
-                            <p>...</p>
+                            <p>$ @Model.superQuote</p>
                             <p><a href="#" style="margin-top:10px; background-color:#B03A2E;" class="btn btn-primary"  role="button">Save Quote</a> <a href="#" style="margin-top:10px;" class="btn btn-default" role="button">Purchase</a></p>
                         </div>
                     </div>
