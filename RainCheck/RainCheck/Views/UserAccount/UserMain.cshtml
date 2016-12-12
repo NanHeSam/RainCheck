@@ -1,16 +1,34 @@
 ﻿@model IEnumerable<RainCheck.Models.policy_tbl>
 
-
 <h3>Welcome @Session["logged_username"]</h3>
-
-@*display current policy*@ 
-<div id="BillsAndOffers" class="tabcontent">
-    
-    @foreach (var policy in Model)
-    {
-        <h2>@policy.policy_id</h2>
-            <p>total price -: @policy.policy_amount </p>
-            <p>amount due -: @(policy.policy_amount/12)</p>
-            <p>due date -: @policy.end_date</p>
-    }
+@*display current policy*@
+<div class="row">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#policy" data-toggle="tab">Your Policy</a>
+        </li>
+        <li>
+            <a href="#policyHist" data-toggle="tab">Policy History</a>
+        </li>
+        <li>
+            <a href="#change" data-toggle="tab">Change Your policy</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="policy">
+            @foreach (var policy in Model)
+            {
+                <h2>@policy.policy_id</h2>
+                <p>total price -: @policy.policy_amount </p>
+                <p>amount due -: @(policy.policy_amount / 12)</p>
+                <p>due date -: @policy.end_date</p>
+            }
+        </div>
+        <div class="tab-pane" id="policyHist">
+            <h1>hello</h1>
+        </div>
+        <div class="tab-pane" id="change">
+            <h1>World</h1>
+        </div>
+    </div>
 </div>

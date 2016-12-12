@@ -14,6 +14,8 @@ C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\roslyn\VBCSCompiler.
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\RainCheck.dll.config
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\RainCheck.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\RainCheck.pdb
+C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.dll
+C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.Agent.Intercept.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.DependencyCollector.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -29,6 +31,8 @@ C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Razor.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Webpages.Deployment.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Webpages.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Webpages.Razor.dll
+C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.xml
+C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.xml
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\Microsoft.AI.Web.xml
@@ -44,7 +48,3 @@ C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\System.Web.Mvc.xml
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.csprojResolveAssemblyReference.cache
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.dll
 C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\obj\Debug\RainCheck.pdb
-C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.dll
-C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.dll
-C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.xml
-C:\Users\sam\Source\Repos\RainCheck\RainCheck\RainCheck\bin\EntityFramework.SqlServer.xml
