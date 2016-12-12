@@ -19,16 +19,37 @@
             @foreach (var policy in Model)
             {
                 <h2>@policy.policy_id</h2>
-                <p>total price -: @policy.policy_amount </p>
-                <p>amount due -: @(policy.policy_amount / 12)</p>
-                <p>due date -: @policy.end_date</p>
+                <p>Policy Number -:@policy.policy_number</p>
+                <p>total price -: $@policy.policy_amount </p>
+                <p>amount due -: $@(policy.policy_amount / 12)</p>
+                <p>due date -: @policy.end_date.ToString("dd/MM/yyyy")</p>
             }
         </div>
         <div class="tab-pane" id="policyHist">
-            <h1>hello</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>policy #</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var policy in Model)
+                    {
+                        <tr>
+                            <td> @policy.policy_id </td>
+                            <td> @policy.start_date</td>
+                            <td> @policy.end_date</td>
+                            <td> @policy.policy_amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane" id="change">
-            <h1>World</h1>
+            <p>Bodily Injury & Property Damage:- </p>
         </div>
     </div>
 </div>
