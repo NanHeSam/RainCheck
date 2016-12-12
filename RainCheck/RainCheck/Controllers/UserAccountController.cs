@@ -25,10 +25,7 @@ namespace RainCheck.Controllers
         public ActionResult UserMain()
         {
             Session["logged_username"] = "Sam";
-            var policies = from e in _context.policy_tbl
-                           group e by e.policy_number into groups
-                           select groups.OrderBy(p => p.start_date).FirstOrDefault();
-
+            var policies = _context.policy_tbl.ToList();
             return View(policies);
 
         }
