@@ -20,7 +20,7 @@ namespace RainCheck.Controllers
             // when validation finished
             TempData["zipcode"] = Request.Form["Zipcode"];
 
-            return View();
+            return RedirectToAction("../Quote/GetQuote");
         }
 
         public ActionResult getSavedQuotePage()

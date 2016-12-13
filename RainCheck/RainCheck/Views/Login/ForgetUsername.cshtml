@@ -10,52 +10,58 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>ForgetUsername</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="~/Script/jquery-1.10.2.js"></script>
+    <script src="~/Script/jquery.validate.js"></script>
+    <script src="~/Script/jquery.validate.unobtrusive.js"></script>
+    
 </head>
 
-<script src="~/Script/jquery-1.10.2.js"></script>
-<script src="~/Script/jquery.validate.js"></script>
-<script src="~/Script/jquery.validate.unobtrusive.js"></script>
+
 
 <body>
-        <div class="ForgetUsernameContainer">
-            ForgetUsername
+    <div class="container">
+        <div class="Content">
             @using (Html.BeginForm("DisplayUsername", "Login", FormMethod.Post))
             {
-                <div class="ForgetUsernameLabel">
-                    Enter information to get Username
-                </div>
-                <div class="ForgetUsernameBox">
-                    <span style="color:red;">@TempData["errorMessage"]</span>
-                    <table>
-                        <tr>
-                            <td>Email:</td>
-                            <td>@Html.TextBoxFor(x => x.email)</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                @Html.ValidationMessageFor(x => x.email, null, new { @style = "color:red;" })
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Policy Number:</td>
-                            <td>@Html.TextBoxFor(x => x.policy_Num)</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                @Html.ValidationMessageFor(x => x.policy_Num, null, new { @style = "color:red;" })
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div>
-                    <input id="GetUsernameBtn" type="submit" value="Get Username" />
-                </div>
+                <div class="HeaderLabel"><h3>Enter information to get Username</h3></div>
+                        <hr />
+                        <div class="logInfoDiv">
+                            <span style="color:red;">@TempData["errorMessage"]</span>
+                            <table>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>@Html.TextBoxFor(x => x.email, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Html.ValidationMessageFor(x => x.email, null, new { @style = "color:red;" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Policy Number:</td>
+                                    <td>@Html.TextBoxFor(x => x.policy_Num, new { @class = "form-control" })</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        @Html.ValidationMessageFor(x => x.policy_Num, null, new { @style = "color:red;" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="submitDiv">
+                            <input id="GetUsernameBtn" class="btn btn-danger btn-block" type="submit" value="Get Username" />
+                        </div>
+                        <hr  />
             }
             <div class="returnToLogin">
                 <a href="../Login/LoginPage">Return to login page</a>
             </div>
         </div>
+    </div>
 </body>
 </html>

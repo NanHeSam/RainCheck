@@ -16,13 +16,29 @@ namespace RainCheck.Controllers
         public ActionResult LoginPage()
         {
             login obj = new login();
-            return View("LoginPage", obj);
+            HttpCookie cookie = Request.Cookies["login_info"];
+            if (cookie != null)
+            {
+                obj.user_name = cookie["username"];
+                obj.password = cookie["password"];
+            }
+             return View("LoginPage", obj);
         }
 
-        public ActionResult LoginSubmit(login lgn)
+        public ActionResult LoginSubmit(login lgn, bool RememberCheckbox = false)
         {           
 
             var username = lgn.user_name;
+
+            // if checkbox is checked, save username to cookie
+            if (RememberCheckbox)
+            {
+                HttpCookie cookie = new HttpCookie("login_info");
+                cookie["username"] = username;
+                cookie["password"] = lgn.password;
+                cookie.Expires = DateTime.Now.AddMinutes(2);
+                Response.Cookies.Add(cookie);
+            }
 
             List<login> targets = entity.logins.Where(x => x.user_name.Equals(username)).ToList(); // find record with certain username
 
@@ -36,7 +52,9 @@ namespace RainCheck.Controllers
                 TempData["errorMessage"] = "Wrong password and username combination";
                 return RedirectToAction("LoginPage");
             }
-            Session["logined_username"] = targets[0].user_name; // store logined username
+            // login success:
+            Session["logged_username"] = targets[0].user_name; // store logined username
+            Session["custId"] = targets[0].customer_id; // store customer id
             return View("UserAcount"); // this part is for test. Need to redirect to ../UserAcc/display something
         }
 
@@ -130,27 +148,37 @@ namespace RainCheck.Controllers
                 Session["verificationCode"] = vCode;
                 Session["resetPswd_username"] = username; // store username of user who want to reset password
                 TempData["Message"] = "Verification Code sent to your email. \n Please enter code to continue.";
-                return View("EnterVerifyCode");
+                return RedirectToAction("EnterVerifyCode");
             }
+            
+        }
 
-
-
+        public ActionResult EnterVerifyCode()
+        {
+            return View("EnterVerifyCode");
         }
 
         public ActionResult verifyCode() {
+            if (Session["verificationCode"] == null) {
+                TempData["errorMessage"] = "Session ended, re-enter to found password";
+                return RedirectToAction("ForgetPassword");
+            }
             if (!Request.Form["VerificationCode"].Equals(Session["verificationCode"].ToString()))
             {
-                TempData["Message"] = "Verification Code invalid! Please enter again.";
-                return View("EnterVerifyCode");
+                TempData["errorMessage"] = "Verification Code invalid! Please enter again.";
+                return RedirectToAction("EnterVerifyCode");
+            }
+
+            else
+            { 
+                return RedirectToAction("ResetPassword");
             }
                 
-            else
-                return View("ResetPassword");
         }
 
         public ActionResult ResetPassword()
         {
-            if (Session["resetPswd_username"] == null)
+            if (Session["resetPswd_username"] == null) // session set after emailed code
             {// session expired, return to forget password page.
                 return RedirectToAction("ForgetPassword");
 
@@ -161,6 +189,13 @@ namespace RainCheck.Controllers
             string password = Request.Form["NewPassword"];
             string confirmPassword = Request.Form["ConfirmPassword"];
 
+            // if both input is null, this call is from verifyCode
+            if (password == null && confirmPassword == null)
+            {
+                return View();
+            }
+
+            // server sider verification
             if (password == "" || confirmPassword == "")
             {
                 TempData["Message"] = "New password and confirm password cannot be empty!";

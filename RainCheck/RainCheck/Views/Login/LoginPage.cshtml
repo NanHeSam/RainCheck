@@ -10,55 +10,69 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>LoginPage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <script src="~/Script/bootstrap.min.js"></script>
+    <script src="~/Script/jquery-1.10.2.js"></script>
+    <script src="~/Script/jquery.validate.js"></script>
+    <script src="~/Script/jquery.validate.unobtrusive.js"></script>
+
 </head>
-<script src="~/Script/jquery-1.10.2.js"></script>
-<script src="~/Script/jquery.validate.js"></script>
-<script src="~/Script/jquery.validate.unobtrusive.js"></script>
+
 
 <body>
-    <div class="LoginContainer"> 
-        <!--<form action="LoginSubmit" method="post">-->
-        @using (Html.BeginForm("LoginSubmit", "Login", FormMethod.Post))
-        { 
-            <p><b>Login Page</b></p>
-            <div>
-                <span style="color:red;">@TempData["errorMessage"]<br /></span>
-                <table>
-                    <tr>
-                        <td>Username:</td>
-                        <td>@Html.TextBoxFor(m => m.user_name)<!--input name="Username" id="UsernameTextBox" type="text" /-->
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(x => x.user_name, null, new { @style = "color:red;" })
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td>@Html.TextBoxFor(m => m.password)<!--input name="Password" id="PasswordTextBox" type="text" /--></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td>
-                            @Html.ValidationMessageFor(x => x.password, null, new { @style = "color:red;" })
-                        </td>
-                    </tr>
-                </table>
+    <div class="container"> 
+        <div class="Content">
+            @using (Html.BeginForm("LoginSubmit", "Login", FormMethod.Post))
+            {
+                <div class="HeaderLabel"><h3>Welcome back to RainCheck</h3></div>
+                <hr />
+                <div class="logInfoDiv">
+                    <span style="color:red;">@TempData["errorMessage"]<br /></span>
+                    <table>
+                        <tr>
+                            <td><span>Username:</span></td>
+                            <td>
+                                @Html.TextBoxFor(m => m.user_name, new { @class = "form-control" })<!--input name="Username" id="UsernameTextBox" type="text" /-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(x => x.user_name, null, new { @style = "color:red;" })</td> 
+                        </tr>
+
+                        <tr>
+                            <td><span>Password:</span></td>
+                            <td>
+                                @Html.TextBoxFor(m => m.password, new { @class = "form-control" })<!--input name="Password" id="PasswordTextBox" type="text" /-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>@Html.ValidationMessageFor(x => x.password, null, new { @style = "color:red;" })</td>
+                        </tr>
+                    </table>
             </div>
-            <div>
-                <input name="RememberCheckbox" id="RememberCheckbox" type="checkbox" value="rememberUser" /> Remember username
+            <div class="checkboxDiv">
+                <input name="RememberCheckbox" id="RememberCheckbox" type="checkbox" value="true" /> Remember Me
             </div>
-            <div>
-                <input id="LoginBtn" type="submit" value="submit" />
+            <div class="submitDiv">
+                <input id="SubmitBtn" class="btn btn-danger btn-block" type="submit" value="submit" />
             </div>
-        }
-        <!--</form>-->
-        <div>
-            <a href="../Login/ForgetUsername">Forget Username</a>
-            <a href="../Login/ForgetPassword">Forget Password</a>
+            }
+            <hr />
+            <!--</form>-->
+            <div class="forgetInfoDiv">
+                <a href="../Login/ForgetUsername" >Forget Username</a>
+                <span style="width:20px; display:inline-block;"></span>
+                <a href="../Login/ForgetPassword" >Forget Password</a>
+            </div>
         </div>
     </div>
+
+    
+
 </body>
 </html>
