@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RainCheckServerModelStoreContainer" CdmEntityContainer="RainCheckServerEntities">
+    <EntitySetMapping Name="cars">
+      <EntityTypeMapping TypeName="RainCheckServerModel.car">
+        <MappingFragment StoreEntitySet="car">
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="vin_number" ColumnName="vin_number" />
+          <ScalarProperty Name="car_model" ColumnName="car_model" />
+          <ScalarProperty Name="body_style" ColumnName="body_style" />
+          <ScalarProperty Name="primary_use" ColumnName="primary_use" />
+          <ScalarProperty Name="estimate_annual_mileage" ColumnName="estimate_annual_mileage" />
+          <ScalarProperty Name="ownership" ColumnName="ownership" />
+          <ScalarProperty Name="car_year" ColumnName="car_year" />
+          <ScalarProperty Name="car_make" ColumnName="car_make" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cities">
+      <EntityTypeMapping TypeName="RainCheckServerModel.city">
+        <MappingFragment StoreEntitySet="city">
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="city_name" ColumnName="city_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="coverage_level">
+      <EntityTypeMapping TypeName="RainCheckServerModel.coverage_level">
+        <MappingFragment StoreEntitySet="coverage_level">
+          <ScalarProperty Name="level_id" ColumnName="level_id" />
+          <ScalarProperty Name="limite" ColumnName="limite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="credentials">
+      <EntityTypeMapping TypeName="RainCheckServerModel.credential">
+        <MappingFragment StoreEntitySet="credentials">
+          <ScalarProperty Name="credential_id" ColumnName="credential_id" />
+          <ScalarProperty Name="rank_id" ColumnName="rank_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_tbl">
+      <EntityTypeMapping TypeName="RainCheckServerModel.customer_tbl">
+        <MappingFragment StoreEntitySet="customer_tbl">
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="driver_license_number" ColumnName="driver_license_number" />
+          <ScalarProperty Name="join_date" ColumnName="join_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="logins">
+      <EntityTypeMapping TypeName="RainCheckServerModel.login">
+        <MappingFragment StoreEntitySet="login">
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="makes">
+      <EntityTypeMapping TypeName="RainCheckServerModel.make">
+        <MappingFragment StoreEntitySet="make">
+          <ScalarProperty Name="make_id" ColumnName="make_id" />
+          <ScalarProperty Name="make_name" ColumnName="make_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="models">
+      <EntityTypeMapping TypeName="RainCheckServerModel.model">
+        <MappingFragment StoreEntitySet="model">
+          <ScalarProperty Name="model_id" ColumnName="model_id" />
+          <ScalarProperty Name="make_id" ColumnName="make_id" />
+          <ScalarProperty Name="make_name" ColumnName="make_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="policy_tbl">
+      <EntityTypeMapping TypeName="RainCheckServerModel.policy_tbl">
+        <MappingFragment StoreEntitySet="policy_tbl">
+          <ScalarProperty Name="policy_id" ColumnName="policy_id" />
+          <ScalarProperty Name="policy_number" ColumnName="policy_number" />
+          <ScalarProperty Name="car_id" ColumnName="car_id" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="policy_amount" ColumnName="policy_amount" />
+          <ScalarProperty Name="self_property" ColumnName="self_property" />
+          <ScalarProperty Name="self_body" ColumnName="self_body" />
+          <ScalarProperty Name="opposite_property" ColumnName="opposite_property" />
+          <ScalarProperty Name="opposite_body" ColumnName="opposite_body" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="quotes">
+      <EntityTypeMapping TypeName="RainCheckServerModel.quote">
+        <MappingFragment StoreEntitySet="quote">
+          <ScalarProperty Name="quote_id" ColumnName="quote_id" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="quote_date" ColumnName="quote_date" />
+          <ScalarProperty Name="quote_amount" ColumnName="quote_amount" />
+          <ScalarProperty Name="Reference_number" ColumnName="Reference_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="states">
+      <EntityTypeMapping TypeName="RainCheckServerModel.state">
+        <MappingFragment StoreEntitySet="state">
+          <ScalarProperty Name="State_id" ColumnName="State_id" />
+          <ScalarProperty Name="State_name" ColumnName="State_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user_tbl">
+      <EntityTypeMapping TypeName="RainCheckServerModel.user_tbl">
+        <MappingFragment StoreEntitySet="user_tbl">
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="user_F_name" ColumnName="user_F_name" />
+          <ScalarProperty Name="user_M_name" ColumnName="user_M_name" />
+          <ScalarProperty Name="user_L_name" ColumnName="user_L_name" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_SSN" ColumnName="user_SSN" />
+          <ScalarProperty Name="user_DOB" ColumnName="user_DOB" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_address" ColumnName="user_address" />
+          <ScalarProperty Name="state_id" ColumnName="state_id" />
+          <ScalarProperty Name="city_id" ColumnName="city_id" />
+          <ScalarProperty Name="zip_code" ColumnName="zip_code" />
+          <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="education_level" ColumnName="education_level" />
+          <ScalarProperty Name="employment" ColumnName="employment" />
+          <ScalarProperty Name="accidents_5years" ColumnName="accidents_5years" />
+          <ScalarProperty Name="traffic_tickets_5years" ColumnName="traffic_tickets_5years" />
+          <ScalarProperty Name="DUIs_10years" ColumnName="DUIs_10years" />
+          <ScalarProperty Name="suspensions_5years" ColumnName="suspensions_5years" />
+          <ScalarProperty Name="defensive_Drive_2years" ColumnName="defensive_Drive_2years" />
+          <ScalarProperty Name="military_affiliation" ColumnName="military_affiliation" />
+          <ScalarProperty Name="veteran_status" ColumnName="veteran_status" />
+          <ScalarProperty Name="credential_id" ColumnName="credential_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

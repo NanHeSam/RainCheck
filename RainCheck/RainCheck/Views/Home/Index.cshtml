@@ -11,27 +11,89 @@
     <title>Index</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Script/bootstrap.min.js"></script>
+    <script src="~/Script/bootstrap.js"></script>
+    <script src="~/Script/jquery-1.10.2.js"></script>
+    <link href="~/Content/home.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function(){
+            $("#aboutlink").click(function () {
+                $("#homelink").attr("class", "");
+                $("#contactuslink").attr("class", "");
+                $("#abountlink").attr("class", "active");
+                $("#home").attr("class", "tab-pane fade");
+                $("#contactUs").attr("class", "tab-pane fade");
+                $("#aboutlink").attr("class", "tab-pane fade in active");
+            });
+            $("#contactuslink").click(function () {
+                $("#homelink").attr("class", "");
+                $("#abountlink").attr("class", "");
+                $("#contactuslink").attr("class", "active");
+                $("#home").attr("class", "tab-pane fade");
+                $("#aboutlink").attr("class", "tab-pane fade");
+                $("#contactUs").attr("class", "tab-pane fade in active");
+            });
+            $("#homelink").click(function () {
+                $("#contactuslink").attr("class", "");
+                $("#abountlink").attr("class", "");
+                $("#homelink").attr("class", "active");
+                $("#contactUs").attr("class", "tab-pane fade");
+                $("#aboutlink").attr("class", "tab-pane fade");
+                $("#home").attr("class", "tab-pane fade in active");
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>Home Page here!</h1>
     <div class="container"> 
-        <div class="header">
-            <div id="header" class="" style="text-align:right; padding:20px; background-color:antiquewhite;">
-                <a href="../Login/LoginPage">Log in</a>
-            </div>
-            <nav class="navbar navbar-default" >
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#home">Home<span class="glyphicon glyphicon-home"></span></a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact Us<span class="glyphicon glyphicon-phone-alt"></span></a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="../Login/LoginPage">Login</a></li>
-                </ul>
-            </nav>
-        </div>
+        <table>
+            <tr>
+                <td class="menulist">
+                    <div>
 
+                        <ul class="nav nav-pills nav-stacked">
+                            <li id="homelink" class="active"><a href="#home">Home<span class="glyphicon glyphicon-home"></span></a></li>
+                            <li id="aboutlink"><a href="#about">About</a></li>
+                            <li id="contactuslink"><a href="#contactUs">Contact Us<span class="glyphicon glyphicon-phone-alt"></span></a></li>
+                        </ul>
+                        @*<ul class="nav navbar-nav navbar-right">
+                    <li><a href="../Login/LoginPage">Login</a></li>
+                </ul>*@
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <p>this is home tab</p>
+                            </div>
+                            <div id="about" class="tab-pane fade">
+                                <div class="jumbotron">
+                                    <p>RainCheck is honest insurance company!</p>
+                                </div>
+                            </div>
+                            <div id="contactUs" class="tab-pane fade">
+                                <div>
+                                    <p>
+                                        <h3>Phone:</h3><br />
+                                        <span>(123)456-7869</span><br />
+                                        <span>Hours: 9:00AM - 5:00PM EST</span>
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3>Address:</h3><br />
+                                    <span>242 New Brunswick Rd</span><br />
+                                    <span>Piscataway, NJ 08854</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </td>
+                <td class="contentDiv">
+
+                    
+                </td>
+            </tr>
+        </table>
         
         <div id="imagePart" style="width:400px; height:300px; background-color:aquamarine; margin-left:100px;">
 
