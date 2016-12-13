@@ -161,7 +161,7 @@
                             var count = Object.keys(data).length; //getting the number of objects in json file
                             for (i = 0; i < count; i++) {
                                 var option = data[i];  // make_name is the property of the object, which gives string value of the object
-                                var text = "<option class=" + "tmpcityopt" + " value=" + data[i] + ">" + data[i] + "</option>";// concatenate html with objectname(which is the different car names under a model)
+                                var text = "<option class=" + "tmpcityopt" + " value=\"" + data[i] + "\">" + data[i] + "</option>";// concatenate html with objectname(which is the different car names under a model)
                                 $("#cityname").after(text);  //adds the above text UNDER the dropdownlist
                             }
                         }
@@ -183,9 +183,8 @@
                         success: function (data) {          //get the json_data (which is object type)
                            var count = Object.keys(data).length; //getting the number of objects in json file
                             for( i = 0; i < count; i++)
-                            {
-                                var option = data[i];  // make_name is the property of the object, which gives string value of the object
-                                var text = "<option class="+"tmpoption"+" value=" + data[i] + ">" + data[i] + "</option>";// concatenate html with objectname(which is the different car names under a model)
+                            {                              
+                                var text = "<option class=" + "tmpoption" + " value= \"" + data[i] + "\" >" + data[i] + "</option>";  
                                $("#modelname").after(text);  //adds the above text UNDER the dropdownlist
                             }
                         }

@@ -27,6 +27,7 @@ namespace RainCheck
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<user_tbl> user_tbl { get; set; }
     
         public virtual ObjectResult<string> RCSgetmodel(string carmake)
         {
@@ -51,7 +52,7 @@ namespace RainCheck
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_GetState");
         }
     
-        public virtual int SP_InsertUserInfo(string user_F_name, string user_M_name, string user_L_name, Nullable<decimal> user_phone, string user_SSN, Nullable<System.DateTime> user_DOB, string user_email, string user_address, string city, string state, Nullable<decimal> zip_code, Nullable<bool> marital_Status, Nullable<bool> gender, string education_Level, string employment, Nullable<bool> accident_Records_5YEARS, Nullable<bool> traffic_Tickets_5YEARS, Nullable<bool> dUIs_10_YEARS, Nullable<bool> suspensions_5YEARS, Nullable<bool> defensive_Drive_2YEARS, Nullable<bool> military_Affiliation, Nullable<bool> veteran_Status, Nullable<decimal> rank_ID)
+        public virtual int SP_InsertUserInfo(string user_F_name, string user_M_name, string user_L_name, Nullable<decimal> user_phone, string user_SSN, Nullable<System.DateTime> user_DOB, string user_email, string user_address, string city, string state, Nullable<decimal> zip_code, Nullable<bool> marital_Status, Nullable<bool> gender, string education_Level, string employment, Nullable<bool> accident_Records_5YEARS, Nullable<bool> traffic_Tickets_5YEARS, Nullable<bool> dUIs_10_YEARS, Nullable<bool> suspensions_5YEARS, Nullable<bool> defensive_Drive_2YEARS, Nullable<bool> military_Affiliation, Nullable<bool> veteran_Status, Nullable<decimal> rank_ID, ObjectParameter user_ID)
         {
             var user_F_nameParameter = user_F_name != null ?
                 new ObjectParameter("user_F_name", user_F_name) :
@@ -145,7 +146,88 @@ namespace RainCheck
                 new ObjectParameter("Rank_ID", rank_ID) :
                 new ObjectParameter("Rank_ID", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertUserInfo", user_F_nameParameter, user_M_nameParameter, user_L_nameParameter, user_phoneParameter, user_SSNParameter, user_DOBParameter, user_emailParameter, user_addressParameter, cityParameter, stateParameter, zip_codeParameter, marital_StatusParameter, genderParameter, education_LevelParameter, employmentParameter, accident_Records_5YEARSParameter, traffic_Tickets_5YEARSParameter, dUIs_10_YEARSParameter, suspensions_5YEARSParameter, defensive_Drive_2YEARSParameter, military_AffiliationParameter, veteran_StatusParameter, rank_IDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertUserInfo", user_F_nameParameter, user_M_nameParameter, user_L_nameParameter, user_phoneParameter, user_SSNParameter, user_DOBParameter, user_emailParameter, user_addressParameter, cityParameter, stateParameter, zip_codeParameter, marital_StatusParameter, genderParameter, education_LevelParameter, employmentParameter, accident_Records_5YEARSParameter, traffic_Tickets_5YEARSParameter, dUIs_10_YEARSParameter, suspensions_5YEARSParameter, defensive_Drive_2YEARSParameter, military_AffiliationParameter, veteran_StatusParameter, rank_IDParameter, user_ID);
+        }
+    
+        public virtual int SP_Credential_ID(Nullable<decimal> rank, ObjectParameter credential_id_num)
+        {
+            var rankParameter = rank.HasValue ?
+                new ObjectParameter("rank", rank) :
+                new ObjectParameter("rank", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Credential_ID", rankParameter, credential_id_num);
+        }
+    
+        public virtual int SP_GetCityID(string cityname, ObjectParameter city_id_num)
+        {
+            var citynameParameter = cityname != null ?
+                new ObjectParameter("cityname", cityname) :
+                new ObjectParameter("cityname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetCityID", citynameParameter, city_id_num);
+        }
+    
+        public virtual int SP_GetStateID(string statename, ObjectParameter state_id_num)
+        {
+            var statenameParameter = statename != null ?
+                new ObjectParameter("statename", statename) :
+                new ObjectParameter("statename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetStateID", statenameParameter, state_id_num);
+        }
+    
+        public virtual int SP_InsertQuote(Nullable<decimal> userid, Nullable<decimal> quote_amount, string reference_num, ObjectParameter quoteID)
+        {
+            var useridParameter = userid.HasValue ?
+                new ObjectParameter("userid", userid) :
+                new ObjectParameter("userid", typeof(decimal));
+    
+            var quote_amountParameter = quote_amount.HasValue ?
+                new ObjectParameter("quote_amount", quote_amount) :
+                new ObjectParameter("quote_amount", typeof(decimal));
+    
+            var reference_numParameter = reference_num != null ?
+                new ObjectParameter("reference_num", reference_num) :
+                new ObjectParameter("reference_num", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertQuote", useridParameter, quote_amountParameter, reference_numParameter, quoteID);
+        }
+    
+        public virtual int SP_InsertCarInfo(Nullable<decimal> vin_number, string car_model, string body_style, string primary_use, Nullable<decimal> estimated_annum_mileage, Nullable<bool> ownership, Nullable<decimal> car_year, string car_make, ObjectParameter carid)
+        {
+            var vin_numberParameter = vin_number.HasValue ?
+                new ObjectParameter("vin_number", vin_number) :
+                new ObjectParameter("vin_number", typeof(decimal));
+    
+            var car_modelParameter = car_model != null ?
+                new ObjectParameter("car_model", car_model) :
+                new ObjectParameter("car_model", typeof(string));
+    
+            var body_styleParameter = body_style != null ?
+                new ObjectParameter("body_style", body_style) :
+                new ObjectParameter("body_style", typeof(string));
+    
+            var primary_useParameter = primary_use != null ?
+                new ObjectParameter("primary_use", primary_use) :
+                new ObjectParameter("primary_use", typeof(string));
+    
+            var estimated_annum_mileageParameter = estimated_annum_mileage.HasValue ?
+                new ObjectParameter("estimated_annum_mileage", estimated_annum_mileage) :
+                new ObjectParameter("estimated_annum_mileage", typeof(decimal));
+    
+            var ownershipParameter = ownership.HasValue ?
+                new ObjectParameter("ownership", ownership) :
+                new ObjectParameter("ownership", typeof(bool));
+    
+            var car_yearParameter = car_year.HasValue ?
+                new ObjectParameter("car_year", car_year) :
+                new ObjectParameter("car_year", typeof(decimal));
+    
+            var car_makeParameter = car_make != null ?
+                new ObjectParameter("car_make", car_make) :
+                new ObjectParameter("car_make", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCarInfo", vin_numberParameter, car_modelParameter, body_styleParameter, primary_useParameter, estimated_annum_mileageParameter, ownershipParameter, car_yearParameter, car_makeParameter, carid);
         }
     }
 }

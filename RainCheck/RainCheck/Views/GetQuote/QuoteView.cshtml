@@ -19,44 +19,49 @@
 </head>
 <body>
    
-        <!-- Quote: <br /> -->
-        <div class="wrapper">
-
-            <div style="text-align: center; display: flex;">
-                <img src="~/img/RainCheckLogo.PNG" />
-            </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/img/Basic_Policy.jpg" alt="Basic Policy">
-                        <div class="caption">
-                            <h3>Basic Policy </h3>
-                            <p>$ @Model.basicQuote </p>
-                            <p><a href="#" class="btn btn-primary" style="background-color:#B03A2E;" role="button">Save Quote</a> <a href="#" class="btn btn-default" role="button">Purchase</a></p>
-                        </div>
-                    </div>
+             <div class="wrapper">
+          
+                <div style="text-align: center; display: flex;">
+                    <img src="~/img/RainCheckLogo.PNG" />
                 </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/img/Premium_Policy.jpg" alt="Premium Policy">
-                        <div class="caption">
-                            <h3>Premium Policy</h3>
-                            <p>$ @Model.premiumQuote</p>
-                            <p ><a href="#" style="margin-top:35px; background-color:#B03A2E;" class="btn btn-primary" role="button">Save Quote</a> <a href="#" style="margin-top:35px;" class="btn btn-default" role="button">Purchase</a></p>
+                <div class="row">
+                    <form action="QuoteInfoA" method="post">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="~/img/Basic_Policy.jpg" alt="Basic Policy">
+                                <div class="caption">
+                                    <h3>Basic Policy </h3>
+                                    <p> $@Model.basicQuote </p>
+                                    <p><button class="btn btn-primary" type="submit" name="basicSave" style="background-color:#B03A2E;" value="@Model.basicQuote">Save Quote</button> <button class="btn btn-default" type="submit" name="basic" value="@Model.basicQuote">Purchase</button></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <img src="~/img/Super_Policy.jpg" alt="Super Policy">
-                        <div class="caption"  >
-                            <h3>Super Policy</h3>
-                            <p>$ @Model.superQuote</p>
-                            <p><a href="#" style="margin-top:10px; background-color:#B03A2E;" class="btn btn-primary"  role="button">Save Quote</a> <a href="#" style="margin-top:10px;" class="btn btn-default" role="button">Purchase</a></p>
+                        </form>
+                    <form action="QuoteInfoB" method="post">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="~/img/Premium_Policy.jpg" alt="Premium Policy">
+                                <div class="caption">
+                                    <h3>Premium Policy</h3>
+                                    <p>$@Model.premiumQuote</p>
+                                    <p><button style="margin-top:35px; background-color:#B03A2E;" class="btn btn-primary" name="premiumSave" value="@Model.premiumQuote">Save Quote</button> <button  style="margin-top:35px;" class="btn btn-default" name="premium" type="submit" value="@Model.premiumQuote">Purchase</button></p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </form>
+                    <form action="QuoteInfoC" method="post">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <img src="~/img/Super_Policy.jpg" alt="Super Policy">
+                                <div class="caption">
+                                    <h3>Super Policy</h3> 
+                                      <p>$@Model.superQuote</p> 
+                                    <p><button  style="margin-top:10px; background-color:#B03A2E;" class="btn btn-primary" name="superSave" value="@Model.superQuote">Save Quote</button> <button style="margin-top:10px;" class="btn btn-default" name="super" value="@Model.superQuote">Purchase</button></p>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+</div>
+</div>
 </body>
 </html>
