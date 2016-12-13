@@ -52,19 +52,21 @@
         <div class="tab-pane" id="change" style="text-align:center">
             <form action="submit" method="get">
                 <h1>Your Policy</h1>
-                <p>Bodily Injury & Property Damage:- 
-                    @foreach(var a in Model.BodyCoverageLevel)
-                    {
-                        <span>@a.ToString()</span>
-                    }
+                <p>Personal Bodily Injury & Property Damage:- 
+                        <span>@Model.BodyCoverageLevel.coverage_level.limite</span>
                 </p>
                 <p>Personal Injury:- 
-                    @foreach (var a in Model.PropertyDamage)
-                    {
-                        <span>@a.ToString()</span>
-                    }
+                    <span>@Model.BodyCoverageLevel.coverage_level1.limite</span>
                 </p>
-                <input id="submit" type="submit" name="submit" value="Change Policy" />
+                <p>
+                    Opponent Bodily Injury & Property Damage:-
+                    <span>@Model.BodyCoverageLevel.coverage_level2.limite</span>
+                </p>
+                <p>
+                    Opponent Injury:-
+                    <span>@Model.BodyCoverageLevel.coverage_level3.limite</span>
+                </p>
+                <input id="submit" type="submit" name="submit" value="Change Policy" class="btn btn-danger" />
             </form>
         </div>
     </div>

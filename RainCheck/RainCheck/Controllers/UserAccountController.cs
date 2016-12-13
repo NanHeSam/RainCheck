@@ -39,15 +39,22 @@ namespace RainCheck.Controllers
         [HttpPost]
         public ActionResult saveQuote(string save, string cancel)
         {
+            var policies = new policyVM(1);
             if (!string.IsNullOrEmpty(save))
             {
-                //Request.Form[""];
-                return RedirectToAction("UserMain");
+                var policy = _context.policy_tbl.Where(o => o.user_id == 1).OrderByDescending(o => o.start_date).First();
+                
+                policy.self_body = System.Convert.ToDecimal(Request.Form["Self_body"]);
+                policy.self_property = System.Convert.ToDecimal(Request.Form["Self_property"]);
+                policy.opposite_body = System.Convert.ToDecimal(Request.Form["op_body"]);
+                policy.opposite_property = System.Convert.ToDecimal(Request.Form["op_property"]);
+                _context.SaveChanges();
+                return RedirectToAction("UserMain", policies);
             } else if (!string.IsNullOrEmpty(cancel))
             {
-                return View();
+                return View("UserMain", policies);
             }
-            return View();
+            return View("submit");
 
         }
 

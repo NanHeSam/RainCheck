@@ -10,6 +10,7 @@ namespace RainCheck.Models
     {
         private RainCheckConnectionString _context = new RainCheckConnectionString();
         decimal user_id;
+        
         public policyVM(decimal user_id)
         {
             this.user_id = user_id;
@@ -33,28 +34,21 @@ namespace RainCheck.Models
             }
         }
 
-        public IQueryable<decimal> BodyCoverageLevel
+        public policy_tbl BodyCoverageLevel
         {
             get
             {
-                var coverage = from a in _context.policy_tbl
-                               where a.user_id == user_id
-                               select  a.coverage_level.limite;
+                var coverage = _context.policy_tbl.Where(o => o.user_id == user_id).OrderByDescending(o => o.start_date).First();
+                    
+                    //from a in _context.policy_tbl
+                    //           where a.user_id == user_id
+                    //           orderby a.start_date
+                    //           select a;
                 return coverage;
 
             }
         }
 
-        public IQueryable<decimal> PropertyDamage
-        {
-            get
-            {
-                var coverage = from a in _context.policy_tbl
-                               select a.coverage_level1.limite;
-                return coverage;
-
-            }
-        }
 
 
     }
