@@ -16,6 +16,7 @@ namespace RainCheck.Controllers
             customer_tbl ct = new customer_tbl {customer_id = 1, userid = 2, driver_license_number = 22221982 , join_date = Convert.ToDateTime("12/12/1982")};
             return View("LoadData",ct);
         }
+
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "StartPolicy")]
         public ActionResult StartPolicy(customer_tbl ob)
@@ -32,6 +33,16 @@ namespace RainCheck.Controllers
                 return View("LoadData", ob);
             }
         }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "PreviousAccount")]
+        public ActionResult PreviousAccount()
+        {            
+                policy_tbl pl = new policy_tbl { car_id = 1, start_date = Convert.ToDateTime("12/12/1982"), end_date = Convert.ToDateTime("12/12/1982"), opposite_body = 1, policy_amount = 200, policy_id = 2, self_body = 1, policy_number = 2443662, opposite_property = 2, self_property = 1, user_id = 1 };
+                return View("NewPolicy", pl);            
+        }
+
+
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "CreateAccount")]
         public ActionResult CreateAccount(policy_tbl p)
@@ -41,17 +52,26 @@ namespace RainCheck.Controllers
             bool validDate = false;
             string s1 = Request.Form["start_date"].ToString();
             string s2 = Request.Form["end_date"].ToString();
-            DateTime d1 = Convert.ToDateTime(s1);
-            DateTime d2 = Convert.ToDateTime(s2);
-            if (DateTime.Compare(d1, d2) == 0 || DateTime.Compare(d1, d2)>0)
+            if (s1 != "" && s2 != "")
             {
-                validDate = false;
-                ViewBag.vlid = "The End Date must be greater than Start Date";
+                DateTime d1 = Convert.ToDateTime(s1);
+                DateTime d2 = Convert.ToDateTime(s2);
+                if (DateTime.Compare(d1, d2) == 0 || DateTime.Compare(d1, d2) > 0)
+                {
+                    validDate = false;
+                    ViewBag.vlid = "The End Date must be greater than Start Date";
+                }
+                else
+                {
+                    validDate = true;
+                }
             }
             else
             {
-                validDate = true;
+                validDate = false;
+                //ViewBag.err = "End Date and Start Date cannot be null";
             }
+           
             if (ModelState.IsValid && validDate)
             {
                 TempData["SD"] = Request.Form["start_date"];
@@ -69,6 +89,8 @@ namespace RainCheck.Controllers
                 return View("NewPolicy", p);
             }
         }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "Submit")]
         public ActionResult Submit(login ls)
         {
             RainCheckServerEntities obContext = new RainCheckServerEntities();
@@ -257,7 +279,7 @@ namespace RainCheck.Controllers
             return cov;
         }
 
-        //Get the Sucharge Amount for given policy
+        //Get the Sucharge Amount for a given policy
         public decimal getAmount(string amt)
         {
             decimal amnt = 0;

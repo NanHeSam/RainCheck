@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RainCheckServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="car">
+    <Key>
+      <PropertyRef Name="car_id" />
+    </Key>
+    <Property Name="car_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vin_number" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="car_model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="body_style" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="primary_use" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estimate_annual_mileage" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="ownership" Type="Boolean" Nullable="false" />
+    <Property Name="car_year" Type="Decimal" Precision="4" Scale="0" Nullable="false" />
+    <Property Name="car_make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="policy_tbl" Relationship="Self.fk_policy_car" FromRole="car" ToRole="policy_tbl" />
+  </EntityType>
+  <EntityType Name="city">
+    <Key>
+      <PropertyRef Name="city_id" />
+    </Key>
+    <Property Name="city_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="state_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="city_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="state" Relationship="Self.fk_state_id" FromRole="city" ToRole="state" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_user_city" FromRole="city" ToRole="user_tbl" />
+  </EntityType>
+  <EntityType Name="coverage_level">
+    <Key>
+      <PropertyRef Name="level_id" />
+    </Key>
+    <Property Name="level_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="limite" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <NavigationProperty Name="policy_tbl" Relationship="Self.fk_ob_coverage" FromRole="coverage_level" ToRole="policy_tbl" />
+    <NavigationProperty Name="policy_tbl1" Relationship="Self.fk_op_coverage" FromRole="coverage_level" ToRole="policy_tbl" />
+    <NavigationProperty Name="policy_tbl2" Relationship="Self.fk_sb_coverage" FromRole="coverage_level" ToRole="policy_tbl" />
+    <NavigationProperty Name="policy_tbl3" Relationship="Self.fk_sp_coverage" FromRole="coverage_level" ToRole="policy_tbl" />
+  </EntityType>
+  <EntityType Name="credential">
+    <Key>
+      <PropertyRef Name="credential_id" />
+    </Key>
+    <Property Name="credential_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="rank_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_user_credential" FromRole="credentials" ToRole="user_tbl" />
+  </EntityType>
+  <EntityType Name="customer_tbl">
+    <Key>
+      <PropertyRef Name="customer_id" />
+    </Key>
+    <Property Name="customer_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="driver_license_number" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="join_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_customer_user" FromRole="customer_tbl" ToRole="user_tbl" />
+    <NavigationProperty Name="logins" Relationship="Self.fk_login_customer" FromRole="customer_tbl" ToRole="login" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="login_id" />
+    </Key>
+    <Property Name="login_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="customer_tbl" Relationship="Self.fk_login_customer" FromRole="login" ToRole="customer_tbl" />
+  </EntityType>
+  <EntityType Name="policy_tbl">
+    <Key>
+      <PropertyRef Name="policy_id" />
+    </Key>
+    <Property Name="policy_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="policy_number" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+    <Property Name="car_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="policy_amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="self_property" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="self_body" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="opposite_property" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="opposite_body" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <NavigationProperty Name="car" Relationship="Self.fk_policy_car" FromRole="policy_tbl" ToRole="car" />
+    <NavigationProperty Name="coverage_level" Relationship="Self.fk_ob_coverage" FromRole="policy_tbl" ToRole="coverage_level" />
+    <NavigationProperty Name="coverage_level1" Relationship="Self.fk_op_coverage" FromRole="policy_tbl" ToRole="coverage_level" />
+    <NavigationProperty Name="coverage_level2" Relationship="Self.fk_sb_coverage" FromRole="policy_tbl" ToRole="coverage_level" />
+    <NavigationProperty Name="coverage_level3" Relationship="Self.fk_sp_coverage" FromRole="policy_tbl" ToRole="coverage_level" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_user_id" FromRole="policy_tbl" ToRole="user_tbl" />
+  </EntityType>
+  <EntityType Name="quote">
+    <Key>
+      <PropertyRef Name="quote_id" />
+    </Key>
+    <Property Name="quote_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="quote_date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="quote_amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="Reference_number" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_userid" FromRole="quote" ToRole="user_tbl" />
+  </EntityType>
+  <EntityType Name="state">
+    <Key>
+      <PropertyRef Name="State_id" />
+    </Key>
+    <Property Name="State_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="State_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="cities" Relationship="Self.fk_state_id" FromRole="state" ToRole="city" />
+    <NavigationProperty Name="user_tbl" Relationship="Self.fk_user_state" FromRole="state" ToRole="user_tbl" />
+  </EntityType>
+  <EntityType Name="user_tbl">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_F_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_M_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_L_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_phone" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="user_SSN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_DOB" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="state_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="city_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="zip_code" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="marital_status" Type="Boolean" Nullable="false" />
+    <Property Name="gender" Type="Boolean" Nullable="false" />
+    <Property Name="education_level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="employment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="accidents_5years" Type="Boolean" Nullable="false" />
+    <Property Name="traffic_tickets_5years" Type="Boolean" Nullable="false" />
+    <Property Name="DUIs_10years" Type="Boolean" Nullable="false" />
+    <Property Name="suspensions_5years" Type="Boolean" Nullable="false" />
+    <Property Name="defensive_Drive_2years" Type="Boolean" Nullable="false" />
+    <Property Name="military_affiliation" Type="Boolean" Nullable="false" />
+    <Property Name="veteran_status" Type="Boolean" Nullable="false" />
+    <Property Name="credential_id" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <NavigationProperty Name="city" Relationship="Self.fk_user_city" FromRole="user_tbl" ToRole="city" />
+    <NavigationProperty Name="credential" Relationship="Self.fk_user_credential" FromRole="user_tbl" ToRole="credentials" />
+    <NavigationProperty Name="customer_tbl" Relationship="Self.fk_customer_user" FromRole="user_tbl" ToRole="customer_tbl" />
+    <NavigationProperty Name="policy_tbl" Relationship="Self.fk_user_id" FromRole="user_tbl" ToRole="policy_tbl" />
+    <NavigationProperty Name="quotes" Relationship="Self.fk_userid" FromRole="user_tbl" ToRole="quote" />
+    <NavigationProperty Name="state" Relationship="Self.fk_user_state" FromRole="user_tbl" ToRole="state" />
+  </EntityType>
+  <Association Name="fk_policy_car">
+    <End Role="car" Type="Self.car" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="car">
+        <PropertyRef Name="car_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="car_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_state_id">
+    <End Role="state" Type="Self.state" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="city" Type="Self.city" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="State_id" />
+      </Principal>
+      <Dependent Role="city">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_city">
+    <End Role="city" Type="Self.city" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="city">
+        <PropertyRef Name="city_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="city_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ob_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="opposite_body" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_op_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="opposite_property" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sb_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="self_body" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_sp_coverage">
+    <End Role="coverage_level" Type="Self.coverage_level" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="coverage_level">
+        <PropertyRef Name="level_id" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="self_property" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_credential">
+    <End Role="credentials" Type="Self.credential" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="credentials">
+        <PropertyRef Name="credential_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="credential_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_customer_user">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="customer_tbl" Type="Self.customer_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="customer_tbl">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_login_customer">
+    <End Role="customer_tbl" Type="Self.customer_tbl" Multiplicity="1" />
+    <End Role="login" Type="Self.login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer_tbl">
+        <PropertyRef Name="customer_id" />
+      </Principal>
+      <Dependent Role="login">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_id">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="policy_tbl" Type="Self.policy_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="policy_tbl">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_userid">
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="1" />
+    <End Role="quote" Type="Self.quote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user_tbl">
+        <PropertyRef Name="userid" />
+      </Principal>
+      <Dependent Role="quote">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_user_state">
+    <End Role="state" Type="Self.state" Multiplicity="1" />
+    <End Role="user_tbl" Type="Self.user_tbl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="state">
+        <PropertyRef Name="State_id" />
+      </Principal>
+      <Dependent Role="user_tbl">
+        <PropertyRef Name="state_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RainCheckServerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cars" EntityType="Self.car" />
+    <EntitySet Name="cities" EntityType="Self.city" />
+    <EntitySet Name="coverage_level" EntityType="Self.coverage_level" />
+    <EntitySet Name="credentials" EntityType="Self.credential" />
+    <EntitySet Name="customer_tbl" EntityType="Self.customer_tbl" />
+    <EntitySet Name="logins" EntityType="Self.login" />
+    <EntitySet Name="policy_tbl" EntityType="Self.policy_tbl" />
+    <EntitySet Name="quotes" EntityType="Self.quote" />
+    <EntitySet Name="states" EntityType="Self.state" />
+    <EntitySet Name="user_tbl" EntityType="Self.user_tbl" />
+    <AssociationSet Name="fk_policy_car" Association="Self.fk_policy_car">
+      <End Role="car" EntitySet="cars" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_state_id" Association="Self.fk_state_id">
+      <End Role="state" EntitySet="states" />
+      <End Role="city" EntitySet="cities" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_city" Association="Self.fk_user_city">
+      <End Role="city" EntitySet="cities" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ob_coverage" Association="Self.fk_ob_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_op_coverage" Association="Self.fk_op_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sb_coverage" Association="Self.fk_sb_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_sp_coverage" Association="Self.fk_sp_coverage">
+      <End Role="coverage_level" EntitySet="coverage_level" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_credential" Association="Self.fk_user_credential">
+      <End Role="credentials" EntitySet="credentials" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_customer_user" Association="Self.fk_customer_user">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="customer_tbl" EntitySet="customer_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_login_customer" Association="Self.fk_login_customer">
+      <End Role="customer_tbl" EntitySet="customer_tbl" />
+      <End Role="login" EntitySet="logins" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_id" Association="Self.fk_user_id">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="policy_tbl" EntitySet="policy_tbl" />
+    </AssociationSet>
+    <AssociationSet Name="fk_userid" Association="Self.fk_userid">
+      <End Role="user_tbl" EntitySet="user_tbl" />
+      <End Role="quote" EntitySet="quotes" />
+    </AssociationSet>
+    <AssociationSet Name="fk_user_state" Association="Self.fk_user_state">
+      <End Role="state" EntitySet="states" />
+      <End Role="user_tbl" EntitySet="user_tbl" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
