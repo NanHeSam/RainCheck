@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RainCheck.Models.policy_tbl>
+﻿@model RainCheck.Models.policyVM
 
 <h3>Welcome @Session["logged_username"]</h3>
 @*display current policy*@
@@ -16,19 +16,56 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane active" id="policy">
-            @foreach (var policy in Model)
-            {
-                <h2>@policy.policy_id</h2>
-                <p>total price -: @policy.policy_amount </p>
-                <p>amount due -: @(policy.policy_amount / 12)</p>
-                <p>due date -: @policy.end_date</p>
-            }
+            <div class="container" style="text-align:center">
+                @foreach (var policy in Model.current_policy)
+                {
+                    <h2>@policy.policy_id</h2>
+                    <p>total price -: @policy.policy_amount </p>
+                    <p>amount due -: @(policy.policy_amount / 12)</p>
+                    <p>due date -: @policy.end_date</p>
+                }
+            </div>
         </div>
         <div class="tab-pane" id="policyHist">
-            <h1>hello</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Policy #</td>
+                        <td>Start Date</td>
+                        <td>End Date</td>
+                        <td>Amount</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var histPolicy in Model.policy_history)
+                    {
+                        <tr>
+                            <td>@histPolicy.policy_number</td>
+                            <td>@histPolicy.start_date</td>
+                            <td>@histPolicy.end_date</td>
+                            <td>@histPolicy.policy_amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-        <div class="tab-pane" id="change">
-            <h1>World</h1>
+        <div class="tab-pane" id="change" style="text-align:center">
+            <form action="submit" method="get">
+                <h1>Your Policy</h1>
+                <p>Bodily Injury & Property Damage:- 
+                    @foreach(var a in Model.BodyCoverageLevel)
+                    {
+                        <span>@a.ToString()</span>
+                    }
+                </p>
+                <p>Personal Injury:- 
+                    @foreach (var a in Model.PropertyDamage)
+                    {
+                        <span>@a.ToString()</span>
+                    }
+                </p>
+                <input id="submit" type="submit" name="submit" value="Change Policy" />
+            </form>
         </div>
     </div>
 </div>
