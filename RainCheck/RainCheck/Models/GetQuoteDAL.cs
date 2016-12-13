@@ -35,17 +35,12 @@ namespace RainCheck.Models
 
         public int InsertUser(string firstname, string middlename, string lastname, decimal phone, string ssn, System.DateTime dob, string email, string address, string city, string state, decimal zip, bool marital_Status, bool gender, string education_Level, string employment, bool accident_Records_5YEARS, bool traffic_Tickets_5YEARS, bool dUIs_10_YEARS, bool suspensions_5YEARS, bool defensive_Drive_2YEARS, bool military_Affiliation, bool veteran_Status, decimal rank_ID)
         {
-            ObjectParameter useridDB = new ObjectParameter("User_ID", typeof(Int32));
-            int UserInfoInserted = rcsobject.SP_InsertUserInfo(firstname, middlename, lastname, phone, ssn, dob, email, address, city, state, zip, marital_Status, gender, education_Level, employment, accident_Records_5YEARS, traffic_Tickets_5YEARS, dUIs_10_YEARS, suspensions_5YEARS, defensive_Drive_2YEARS, military_Affiliation, veteran_Status, rank_ID, useridDB);
-            if (useridDB!= null)
+            ObjectParameter useridDB1 = new ObjectParameter("User_ID", typeof(Int32));            
+            int UserInfoInserted = rcsobject.SP_InsertUserInfo(firstname, middlename, lastname, phone, ssn, dob, email, address, city, state, zip, marital_Status, gender, education_Level, employment, accident_Records_5YEARS, traffic_Tickets_5YEARS, dUIs_10_YEARS, suspensions_5YEARS, defensive_Drive_2YEARS, military_Affiliation, veteran_Status, rank_ID, useridDB1);
+            int userid = (int)useridDB1.Value;
+            if (useridDB1!= null)
             {
-                string tempuserid = Convert.ToString(useridDB);
-                int userid; 
-                bool parsed = Int32.TryParse(tempuserid, out userid);
-                if (!parsed)
-                    Console.WriteLine("Int32.TryParse could not parse '{0}' to an int.\n", tempuserid);
-
-                return userid;
+              return userid;
             }
             else
             {
@@ -60,12 +55,7 @@ namespace RainCheck.Models
                   int UserInfoInserted = rcsobject.SP_InsertQuote(useridDB, quote_amount, reference_number, quoteidDB);
                 if (quoteidDB != null)
                 {
-                    string tempquoteid = Convert.ToString(quoteidDB);
-                    int quoteid;
-                    bool parsed = Int32.TryParse(tempquoteid, out quoteid);
-                    if (!parsed)
-                        Console.WriteLine("Int32.TryParse could not parse '{0}' to an int.\n",  quoteid);
-
+                    int quoteid = (int)quoteidDB.Value;
                     return quoteid;
                 }
                 else
