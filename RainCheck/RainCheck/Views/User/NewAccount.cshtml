@@ -61,15 +61,15 @@
     <div id="id1" class="cl">
         <form id="f1" action="" method="post">
             <div class="cl">
-                <label for="males" style="color:white; font-size:medium">Username :</label> <input style="margin-left:10px" id="Text1" name="user_name" type="text" /><br />
+                <label for="males" style="color:white; font-size:medium">Username :</label> <input style="margin-left:10px" id="Text1" value="@TempData.Peek("USN")" name="user_name" type="text" /><br />
                 <label for="male"></label> @ViewBag.UN
             </div>
             <div class="cl">
-                <label for="male">Password :</label> <input style="margin-left:10px" id="Text1" name="password" type="text" /><br />
+                <label for="male">Password :</label> <input style="margin-left:10px" id="Text1" value="@TempData.Peek("PSW")" name="password" type="text" /><br />
                 <label for="male"></label>@ViewBag.PW
             </div>
             <div id="id2" class="cl">
-                <label for="male">Confirm Password:</label> <input style="margin-left:10px" id="Text1" name="confirms" type="text" /><br />
+                <label for="male">Confirm Password:</label> <input style="margin-left:10px" id="Text1" value="@TempData.Peek("CPW")" name="confirms" type="text" /><br />
                 <label for="male"></label> @ViewBag.CPW
             </div>
             <div class="button">

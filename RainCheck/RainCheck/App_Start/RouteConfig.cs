@@ -17,6 +17,11 @@ namespace RainCheck
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "User", action = "Load", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "Home1",
+                url: "",
+                defaults: new { controller = "User", action = "Load", id = UrlParameter.Optional }
+            );
         }
     }
 }

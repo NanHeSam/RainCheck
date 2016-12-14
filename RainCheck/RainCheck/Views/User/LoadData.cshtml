@@ -55,7 +55,7 @@
     <div id="id1" class="cl" >
         <form id="f1" style="height:200px" action="" method="post">
             <div class="cl" style="padding-top:60px">
-                <label for="male" style="font-size:medium; color:white;">Driver's Licence#</label> <input style="margin-left:10px" id="Text1" name="driver_license_number" type="text" /> <br />
+                <label for="male" style="font-size:medium; color:white;">Driver's Licence#</label> <input style="margin-left:10px" id="Text1" value="@TempData.Peek("DriverLicence")" name="driver_license_number" type="text" /> <br />
             </div>            
             <div class="button">
                 <button id="Submit1" type="submit" value="Previous" name="action:Load"> Previous </button> <button id="Submit1" type="submit" style="margin-left:5px;" value="Continue" name="action:StartPolicy"> Continue </button>

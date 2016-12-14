@@ -67,16 +67,16 @@
     <div id="id1" class="cl">
         <form id="f1" action="" method="post">
             <div class="cl" style="margin-top:6px">
-                <label for="male" style="color:white; font-size:medium;">Start Date</label> <input style="margin-left:10px" name="start_date" id="Text1" type="text" /> <br />
+                <label for="male" style="color:white; font-size:medium;">Start Date</label> <input style="margin-left:10px" name="start_date" id="Text1" type="text" value="@TempData.Peek("SD")" /> <br />
             </div>
             <div class="cl">
-                <label for="male">End Date </label> <input style="margin-left:10px" id="Text1" name="end_date" type="text" /><br />
+                <label for="male">End Date </label> <input style="margin-left:10px" id="Text1" name="end_date" type="text" value="@TempData.Peek("ED")"/><br />
                 <label for="male"></label> @ViewBag.vlid
              </div>
             <div class="cl">
               <div class="selct">
                 <label for="male">Self Property</label>
-                <select class="covr" style="margin-left:10px" name="SelfProperty">
+                <select class="covr" style="margin-left:10px" name="SelfProperty" value="@TempData.Peek("SP")">
                     <option value="0" name="0">0</option>
                     <option value="10000" name="0">10000</option>
                     <option value="25000" name="0">25000</option>
@@ -86,7 +86,7 @@
               </div>
                 <div class="selct">
                     <label for="male">Self Body</label>
-                    <select class="covr" style="margin-left:10px" name="SelfBody">
+                    <select class="covr" style="margin-left:10px" name="SelfBody" value="@TempData.Peek("SB")">
                         <option value="0" name="0">0</option>
                         <option value="10000" name="0">10000</option>
                         <option value="25000" name="0">25000</option>
@@ -96,7 +96,7 @@
                 </div>
                 <div class="selct">
                     <label for="male">Opposite Property</label>
-                    <select class="covr" style="margin-left:10px" name="OppositeProperty">
+                    <select class="covr" style="margin-left:10px" name="OppositeProperty" value="@TempData.Peek("OP")">
                         <option value="10000" name="0">10000</option>
                         <option value="25000" name="0">25000</option>
                         <option value="50000" name="0">50000</option>
@@ -105,7 +105,7 @@
                 </div>
                  <div class="selct">
                         <label for="male">Opposite Body</label>
-                        <select class="covr" style="margin-left:10px" name="OppositeBody">
+                        <select class="covr" style="margin-left:10px" name="OppositeBody" value="@TempData.Peek("OB")">
                             <option value="10000" name="0">10000</option>
                             <option value="25000" name="0">25000</option>
                             <option value="50000" name="0">50000</option>
