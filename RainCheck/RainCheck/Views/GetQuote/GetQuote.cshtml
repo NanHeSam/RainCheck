@@ -107,11 +107,43 @@
                     $("#driv").attr("class", "active");
                     $("#driver").attr("class", "tab-pane active");
                 });
+                /**********************checks for ssn unique next and requirement.*********************/
                 $("#continueThree").click(function () {
-                    $("#driv").attr("class", "");
-                    $("#driver").attr("class", "tab-pane");
-                    $("#drivhis").attr("class", "active");
-                    $("#driver_history").attr("class", "tab-pane active");
+                    
+                    ssn = $('#ssn').val();
+                    if ($('#ssn').val() == "") {
+                        document.getElementById('ssn').style.borderColor = "red";
+                        $("p").remove(".ssnerror");
+                        $("#ssnERR").prepend("<p" + " class=" + "ssnerror" + ">Please enter SSN</p>");
+                        $("#ssnERR").css({ "color": "red" });
+                        flag = 1;
+                    }
+                    
+                     $.ajax({
+                        type: 'POST',
+                        url: '/GetQuote/uniqueSSN',
+                        data: { value: ssn },
+                        success: function (data) {
+                            if (!data) {
+                                flag = 1;
+                                document.getElementById('ssn').style.borderColor = "red";
+                                $("p").remove(".ssnerror");
+                                $("#ssnERR").prepend("<p" + " class=" + "ssnerror" + ">Enter Unique SSN.</p>");
+                                $("#ssnERR").css({ "color": "red" });                               
+                            }                           
+                        }
+                     });
+                    
+                    if (flag == 1) {
+                        flag = 0;
+                        return;
+                    }
+                    else {
+                            $("#driv").attr("class", "");
+                            $("#driver").attr("class", "tab-pane");
+                            $("#drivhis").attr("class", "active");
+                            $("#driver_history").attr("class", "tab-pane active");
+                    }                    
                 });
                 $("#continueFour").click(function () {
                     $("#drivhis").attr("class", "");
@@ -119,7 +151,7 @@
                     $("#cont").attr("class", "active");
                     $("#contact_info").attr("class", "tab-pane active");
                 });
-                $("#submit").click(function () {
+                $('#myform').click(function() {
 
                         var flag = 0;
                         if ($('#email').val() == "") {
@@ -130,18 +162,61 @@
                             flag = 1;
                         }
                         if ($('#phonenumber').val() == "") {
-                            document.getElementById('dob').style.borderColor = "red";
+                            document.getElementById('phonenumber').style.borderColor = "red";
                             $("p").remove(".phonenumbererror");
                             $("#phonenumberERR").prepend("<p" + " class=" + "phonenumbererror" + ">Please enter phonenumber.</p>"); // Inserts content at the beginning of the selected element/s
                             $("#phonenumberERR").css({ "color": "red" }); //adds or changes the css style of designated html tags.
                             flag = 1;
                         }
+                        
+                       
+                        email = $('#email').val();
+                        if (email != "") {                        
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/GetQuote/uniqueEmail',
+                                            data: { value: email },
+                                            success: function (data) {
+                                                if (!data) {
+                                                    document.getElementById('email').style.borderColor = "red";
+                                                    $("p").remove(".emailerror");
+                                                    $("#emailERR").prepend("<p" + " class=" + "emailerror" + ">Enter Unique email-id</p>"); // Inserts content at the beginning of the selected element/s
+                                                    $("#emailERR").css({ "color": "red" }); //adds or changes the css style of designated html tags.
+                                                    flag = 1;
+                                                }
+                                            }
+                                        });
+                        }
+
+                        phone = $('#phonenumber').val();
+                        if (phone != "") {
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/GetQuote/uniquePhone',
+                                        data: { value: phone },
+                                        success: function (data) {
+                                            if (!data) {
+                                                document.getElementById('phonenumber').style.borderColor = "red";
+                                                $("p").remove(".phonenumbererror");
+                                                $("#phonenumberERR").prepend("<p" + " class=" + "phonenumbererror" + ">Enter Unique phonenumber.</p>");
+                                                $("#phonenumberERR").css({ "color": "red" });
+                                                flag = 1;
+                                            }
+                                        }
+                                    });
+                        }
+
                         if (flag == 1) {
+                            flag = 0;
                             return false;
                         }
-                        else {
-                            return true;
-                        }
+
+           /*             else 
+                        {
+                         //   return true;
+                        }*/
+                        
+                        
                     });
 
 
@@ -207,7 +282,7 @@
             <div style="text-align: center; display: flex;">
                 <img src="~/img/RainCheckLogo.PNG" />
             </div>
-            <form action="submit" method="post">
+            <form id="myform" action="submit"    method="post">
                 <div class="row">
                     <div class="col-md-12">
                         <h2>Customer</h2>
@@ -478,7 +553,8 @@
                                             </div>
                                             <div class="col-xs-3 col-xs-offset-3" style="padding-top:15px;">
                                                 <input type="password" id="ssn" name="ssn" align="center" class="form-control form-control-md" placeholder="SSN" required>
-                                            </div>
+                                                <div id="ssnERR"></div>
+                                             </div>
                                         </div>
 
                                         <div class="row" style="padding-top:15px; border-top: 1px solid#E5E7E9;">
@@ -630,7 +706,7 @@
                                             </div>
                                         </div>
                                         <div style="padding-top:10px;">
-                                            <button type="submit" value="submit" id="submit" class="btn btn-primary btn-lg" style="background-color:#B03A2E;">Get Quote</button>
+                                            <button type="submit" value="submit" id="submit" class="btn btn-primary btn-lg"  style="background-color:#B03A2E;">Get Quote</button>
                                         </div>
                                     </div>
                                 </div>

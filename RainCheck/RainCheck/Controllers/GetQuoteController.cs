@@ -36,6 +36,37 @@ namespace RainCheck.Controllers
                      GetQuoteDAL dalObject = new GetQuoteDAL();
                      return Json(dalObject.GetCities(value));
                 }
+            [HttpPost]
+            public JsonResult uniqueEmail(string value)
+            {
+                GetQuoteDAL dalObject = new GetQuoteDAL();
+                return Json(dalObject.CheckUniqueEmail(value));
+            }
+
+            [HttpPost]
+            public JsonResult uniquePhone(string value)
+            {
+                 bool unique = true;
+                try
+                {
+                  long  phone = Int64.Parse(value);
+                    GetQuoteDAL dalObject = new GetQuoteDAL();
+                    unique = dalObject.CheckUniquePhone(phone);
+                }                
+             catch (FormatException)
+                    {
+                        Console.WriteLine("The value doesn't match the long format!!!");
+                    }
+            
+                return Json(unique);
+            }
+
+            [HttpPost]
+            public JsonResult uniqueSSN(string value)
+            {
+                GetQuoteDAL dalObject = new GetQuoteDAL();
+                return Json(dalObject.CheckUniqueSSN(value));
+            }
 
         public ActionResult Reference()
                 {
@@ -79,12 +110,24 @@ namespace RainCheck.Controllers
               qobj.Gender = Request.Form["optradio"];
               qobj.Education = Request.Form["education"];
               qobj.Employment = Request.Form["employment"];
+            
               qobj.Email = Request.Form["email"];
-              qobj.PhoneNum = long.Parse(Request.Form["phonenumber"]);
+                    try
+                    {
+                        qobj.PhoneNum = long.Parse(Request.Form["phonenumber"]);
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("The value doesn't match the long format!!!");
+                    }
 
                  qobj.basicQuote = qobj.CalculateQuote();
                  qobj.premiumQuote = qobj.basicQuote + 50;
                  qobj.superQuote = qobj.basicQuote + 90;
+                 TempData["basic"] = qobj.basicQuote;
+                 TempData["premium"] = qobj.premiumQuote;
+                 TempData["super"] = qobj.superQuote;
+          
              decimal rank = 0;
              GetQuoteDAL dalObjt = new GetQuoteDAL();
 
@@ -108,7 +151,7 @@ namespace RainCheck.Controllers
         {
                         GetQuoteBLL qobj = new GetQuoteBLL();
                         GetQuoteDAL dalObject = new GetQuoteDAL();                        
-                        decimal quoteAmount = Convert.ToDecimal(Request.Form["basic"]);
+                        decimal quoteAmount = Convert.ToDecimal(TempData.Peek("basic"));
                         string tempuserid = Convert.ToString(TempData.Peek("Userid"));
                         int userid;
                         bool parsed = Int32.TryParse(tempuserid, out userid);
@@ -153,7 +196,7 @@ namespace RainCheck.Controllers
         {
 
             GetQuoteDAL dalObject = new GetQuoteDAL();
-            decimal quoteAmount = Convert.ToDecimal(Request.Form["premium"]);
+            decimal quoteAmount = Convert.ToDecimal(TempData.Peek("Premium"));
             string tempuserid = Convert.ToString(TempData.Peek("Userid"));
             int userid;
             bool parsed = Int32.TryParse(tempuserid, out userid);
@@ -195,7 +238,7 @@ namespace RainCheck.Controllers
         {
 
             GetQuoteDAL dalObject = new GetQuoteDAL();
-            decimal quoteAmount = Convert.ToDecimal(Request.Form["super"]);
+            decimal quoteAmount = Convert.ToDecimal(TempData.Peek("super"));
             string tempuserid = Convert.ToString(TempData.Peek("Userid"));
             int userid;
             bool parsed = Int32.TryParse(tempuserid, out userid);

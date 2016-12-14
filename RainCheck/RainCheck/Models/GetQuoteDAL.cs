@@ -73,18 +73,45 @@ namespace RainCheck.Models
             int CarInfoInserted = rcsobject.SP_InsertCarInfo(vin_number, car_model, body_style, primary_use, estimated_annum_mileage, ownership, car_year, car_make, caridDB);
             if (caridDB != null)
             {
-                string tempcarid = Convert.ToString(caridDB);
-                int carid;
-                bool parsed = Int32.TryParse(tempcarid, out carid);
-                if (!parsed)
-                    Console.WriteLine("Int32.TryParse could not parse '{0}' to an int.\n", carid);
-
+                int carid = (int)caridDB.Value;
                 return carid;
             }
             else
             {
                 return -1;
             }
+        }
+
+        public bool CheckUniqueEmail(string email)  // if it is true tht means the email is unique and proceed!
+        {
+            int unique = rcsobject.SP_Unique_Email(email).FirstOrDefault() ?? -1;
+            if (unique == 0 || unique== -1)
+            {
+                return true;
+            }
+            else
+                return false;                       
+        }
+        public bool CheckUniquePhone(long phone)  // if it is true tht means the email is unique and proceed!
+        {
+            decimal phonenum = Convert.ToDecimal(phone);
+            int unique = rcsobject.SP_Unique_phonenum(phonenum).FirstOrDefault() ?? -1;
+            if (unique == 0 || unique == -1)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+        public bool CheckUniqueSSN(string ssn)  
+        {
+            int unique = rcsobject.SP_Unique_SSN(ssn).FirstOrDefault() ?? -1;
+            if (unique == 0 || unique == -1)
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
 

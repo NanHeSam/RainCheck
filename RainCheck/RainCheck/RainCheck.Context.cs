@@ -229,5 +229,41 @@ namespace RainCheck
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_InsertCarInfo", vin_numberParameter, car_modelParameter, body_styleParameter, primary_useParameter, estimated_annum_mileageParameter, ownershipParameter, car_yearParameter, car_makeParameter, carid);
         }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_Email(string email)
+        {
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_Email", emailParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_phonenum(Nullable<decimal> phone)
+        {
+            var phoneParameter = phone.HasValue ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_phonenum", phoneParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_SSN(string sSN)
+        {
+            var sSNParameter = sSN != null ?
+                new ObjectParameter("SSN", sSN) :
+                new ObjectParameter("SSN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_SSN", sSNParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> SP_Unique_vin(Nullable<decimal> vin)
+        {
+            var vinParameter = vin.HasValue ?
+                new ObjectParameter("vin", vin) :
+                new ObjectParameter("vin", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("SP_Unique_vin", vinParameter);
+        }
     }
 }
