@@ -6,22 +6,25 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace RainCheck
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+
 
     public partial class policy_tbl
     {
+        [Key]
         public decimal policy_id { get; set; }
         public decimal policy_number { get; set; }
         public decimal car_id { get; set; }
         public decimal user_id { get; set; }
         [Required]
+        [ValidateDateRangeAttribute]
+        [DisplayFormat(DataFormatString ="{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime start_date { get; set; }
         [Required]
+        [ValidateDateRangeAttribute]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public System.DateTime end_date { get; set; }
         public decimal policy_amount { get; set; }
         public decimal self_property { get; set; }

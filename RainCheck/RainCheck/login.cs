@@ -15,15 +15,14 @@ namespace RainCheck
 
     public partial class login
     {
+        [Key]
         public decimal login_id { get; set; }
         public decimal customer_id { get; set; }
-
-        [Required]
-        [StringLength(10)]
+        [Required]        
+        [RegularExpression("^[a-zA-Z][a-zA-Z0-9]{5,10}$")]
         public string user_name { get; set; }
-
         [Required]
-        [StringLength(10)]
+        [RegularExpression("^[a-zA-Z][a-zA-Z0-9]{5,10}$")]
         public string password { get; set; }
     
         public virtual customer_tbl customer_tbl { get; set; }

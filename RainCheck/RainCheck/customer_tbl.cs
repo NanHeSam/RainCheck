@@ -19,10 +19,12 @@ namespace RainCheck
         public customer_tbl()
         {
             this.logins = new HashSet<login>();
-        }    
+        }
+        [Key]
         public decimal customer_id { get; set; }
         public decimal userid { get; set; }
         [Required]
+        [RegularExpression("^[0-9]{10,10}$")]
         public decimal driver_license_number { get; set; }
         public System.DateTime join_date { get; set; }
     

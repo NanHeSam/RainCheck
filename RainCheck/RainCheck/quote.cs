@@ -15,11 +15,11 @@ namespace RainCheck
 
     public partial class quote
     {
+        [Key]
         public decimal quote_id { get; set; }
         public decimal userid { get; set; }
         public System.DateTime quote_date { get; set; }
         public decimal quote_amount { get; set; }
-        [Required]
         public string Reference_number { get; set; }
     
         public virtual user_tbl user_tbl { get; set; }

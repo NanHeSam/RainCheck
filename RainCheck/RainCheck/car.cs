@@ -11,7 +11,8 @@ namespace RainCheck
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class car
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,9 @@ namespace RainCheck
         {
             this.policy_tbl = new HashSet<policy_tbl>();
         }
-    
+        [Key]
         public decimal car_id { get; set; }
+        [Required]
         public decimal vin_number { get; set; }
         public string car_model { get; set; }
         public string body_style { get; set; }

@@ -11,7 +11,8 @@ namespace RainCheck
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class city
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,7 @@ namespace RainCheck
         {
             this.user_tbl = new HashSet<user_tbl>();
         }
-    
+        [Key]
         public decimal city_id { get; set; }
         public decimal state_id { get; set; }
         public string city_name { get; set; }

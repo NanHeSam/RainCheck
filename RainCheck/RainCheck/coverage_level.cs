@@ -11,7 +11,8 @@ namespace RainCheck
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class coverage_level
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +23,7 @@ namespace RainCheck
             this.policy_tbl2 = new HashSet<policy_tbl>();
             this.policy_tbl3 = new HashSet<policy_tbl>();
         }
-    
+        [Key]
         public decimal level_id { get; set; }
         public decimal limite { get; set; }
     
